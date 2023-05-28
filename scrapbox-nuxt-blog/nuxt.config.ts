@@ -10,6 +10,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  // https://nuxt.com/docs/guide/going-further/runtime-config
+  // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
+  runtimeConfig: {},
   // https://tailwindcss.com/docs/guides/nuxtjs#3
   css: ['~/assets/css/main.css'],
   postcss: {
