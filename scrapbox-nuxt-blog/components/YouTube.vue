@@ -3,7 +3,7 @@
 // TODO: 縮むようにする
 const props = defineProps({ line: Object })
 
-const youtubeUrl = props.line.replace('[', '').replace(']', '')//
+const youtubeUrl = props.line.replace(/\[|\]/g, '')
 let youtubeId = ''
 if (youtubeUrl.includes('youtube.com')) {
   youtubeId = youtubeUrl.split('v=').pop()

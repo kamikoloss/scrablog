@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({ line: String })
 const urlList = props.line.split(']')
-const getSrc = (url) => `${url}/max_size/1000`.replaceAll('[', '')
+const getSrc = (url) => `${url}/max_size/1000`.replace(/\[/g, '')
 const getClass = (url) => ({'max-h-80': !url.startsWith('[[')})
 </script>
 
