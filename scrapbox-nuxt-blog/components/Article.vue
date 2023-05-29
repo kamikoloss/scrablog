@@ -12,10 +12,27 @@ const props = defineProps({ page: Object })
           <UnixTimeToDate :time="page.created" />
         </div>
       </div>
-      <div v-for="(line, index) in page.lines">
+      <div v-for="(line, index) in page.lines" class="my-4">
         <!-- 1行目はタイトルなので省略する -->
         <div v-if="index !== 0">
-          <p class="text-justify leading-relaxed my-4">{{ line }}</p>
+          <!-- 空行 -->
+          <div v-if="line === ''"></div>
+          <!-- Gyazo -->
+          <div v-else-if="line.includes('gyazo.com')">
+            <Gyazo :line="line" />
+          </div>
+          <!-- YouTube -->
+          <div v-else-if="line.includes('youtube.com') || line.includes('youtu.be')">
+            <YouTube :line="line" />
+          </div>
+          <!-- 外部リンク -->
+          <div v-else-if="line.includes('https://') && line.includes('[')">
+            <ScrapboxLink :line="line" />
+          </div>
+          <!-- それ以外: プレーン文字として扱う -->
+          <div v-else>
+            <p class="text-justify leading-relaxed">{{ line }}</p>
+          </div>
         </div>
       </div>
     </div>
