@@ -5,6 +5,18 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
     head: {
+      link: [
+        // Google Fonts
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap',
+          crossorigin: '',
+        },
+      ],
       htmlAttrs: {
         lang: 'ja',
       },
