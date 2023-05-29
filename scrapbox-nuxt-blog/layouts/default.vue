@@ -2,7 +2,7 @@
     <div>
       <header>
       </header>
-      <main>
+      <main class="w-full max-w-3xl m-auto">
         <slot />
       </main>
       <footer>        
