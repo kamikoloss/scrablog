@@ -5,18 +5,21 @@ const props = defineProps({ page: Object })
 
 <template>
   <article>
-    <div class="border border-gray-300 px-4 py-8">
-      <div class="border-b border-gray-300 pb-4 mb-8">
+    <div class="border border-gray-300 px-4">
+      <!-- タイトル, 日付 -->
+      <div class="border-b border-gray-300 my-8">
         <h2 class="text-xl font-bold">{{ page.title }}</h2>
         <div class="text-right text-gray-500 ml-auto">
-          <UnixTimeToDate :time="page.created" />
+          <Date :unix-time="page.created" />
         </div>
       </div>
+      <!-- 本文 -->
+      <div class="my-8">
       <div v-for="(line, index) in page.lines" class="my-4">
-        <!-- 1行目はタイトルなので省略する -->
-        <div v-if="index !== 0">
+          <!-- 1行目: タイトルなので省略する -->
+          <div v-if="index === 0"></div>
           <!-- 空行 -->
-          <div v-if="line === ''"></div>
+          <div v-else-if="line === ''"></div>
           <!-- Gyazo -->
           <div v-else-if="line.includes('gyazo.com')">
             <Gyazo :line="line" />
