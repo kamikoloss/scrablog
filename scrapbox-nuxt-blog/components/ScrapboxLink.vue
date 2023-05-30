@@ -11,5 +11,5 @@ const link = parseLink(props.line)
 </script>
 
 <template>
-  <NuxtLink :to="link.url" target="_blank">{{ link.title }}</NuxtLink>
+  <NuxtLink :to="link.url" target="_blank" class="underline">{{ link.title }}</NuxtLink>
 </template>
