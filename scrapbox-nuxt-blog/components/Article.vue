@@ -1,15 +1,18 @@
 
 <script setup>
 import { parse } from '@progfay/scrapbox-parser'
+
 const props = defineProps({ page: Object })
 const lines = parse(props.page.lines.join('\n'))
 console.log(lines)
 
 const lineClass = (line) => {
   const hasImage = line.nodes?.filter(node => node.type === 'image').length > 0
+  const isSingleNode = line.nodes?.length === 1
   return {
-    'my-2': true,
     'flex': hasImage,
+    'text-justify': isSingleNode,
+    'my-2': true,
   }
 }
 const decorationClass = (decos) => {
@@ -72,6 +75,7 @@ const indentClass = (indent) => {
             </span>
             <!-- リンク -->
             <span v-if="node.type === 'link'">
+              <!-- 外部リンク -->
               <span v-if="node.pathType === 'absolute'">
                 <!-- YouTube -->
                 <span v-if="node.href.includes('youtube.com') || node.href.includes('youtu.be')">
@@ -79,12 +83,20 @@ const indentClass = (indent) => {
                 </span>
                 <!-- テキストリンク -->
                 <span v-else>
-                  <NuxtLink :to="node.href" class="underline">{{ node.content === '' ? node.href : node.content }}</NuxtLink>
+                  <NuxtLink :to="node.href" class="underline text-blue-500" target="_blank">
+                    {{ node.content === '' ? node.href : node.content }}
+                  </NuxtLink>
                 </span>
               </span>
+              <!-- 外部 Scrapbox -->
+              <span v-if="node.pathType === 'root'">
+                <NuxtLink :to="`https://scrapbox.io${node.href}/`" target="_blank" class="underline text-blue-500">
+                  {{ node.href }}
+                </NuxtLink>
+              </span>
+              <!-- 内部リンク -->
               <span v-if="node.pathType === 'relative'">
-                <!-- TODO -->
-                <span>{{ node.href }}</span>
+                <NuxtLink :to="node.href" class="text-blue-500">{{ node.href }}</NuxtLink>
               </span>
             </span>
             <!-- 画像 -->
