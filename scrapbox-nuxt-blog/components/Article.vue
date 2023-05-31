@@ -9,35 +9,18 @@ console.log(lines)
 const lineClass = (line) => {
   const hasImage = line.nodes?.filter(node => node.type === 'image').length > 0
   const isSingleNode = line.nodes?.length === 1
+  const isQuote = line.nodes?.filter(node => node.type === 'quote').length > 0
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
-    'my-2': true,
+    'bg-gray-100': isQuote,
+    'px-4': isQuote,
+    'py-1': isQuote,
+    'my-2': !isQuote,
   }
 }
-const decorationClass = (decos) => {
-  const isBold = (decos) => {
-    const regex = /\*.*/
-    for (const deco of decos) {
-      if (regex.test(deco)) return true
-    }
-    return false
-  }
-  return {
-    'font-bold': isBold(decos),
-    'text-lg': decos.includes('*-2'),
-    'text-xl': decos.includes('*-3'),
-    'text-2xl': decos.includes('*-4'),
-    'text-3xl': decos.includes('*-5'),
-    'text-4xl': decos.includes('*-6'),
-    'text-5xl': decos.includes('*-7'),
-    'text-6xl': decos.includes('*-8'),
-    'italic': decos.includes('/'),
-    'line-through': decos.includes('-'),
-    'underline': decos.includes('_'),
-  }
-}
-const indentClass = (indent) => {
+const indentClass = (line) => {
+  const indent = line.indent
   return {
     'ml-4': indent === 2,
     'ml-8': indent === 3,
@@ -62,54 +45,15 @@ const indentClass = (indent) => {
       </div>
       <!-- 本文 -->
       <div class="my-16">
+        <!-- 行 -->
         <div v-for="line in lines" :class="lineClass(line)">
           <!-- 空行 -->
           <div v-if="line.nodes?.length === 0" class="my-8"></div>
           <!-- インデント -->
-          <span v-if="line.indent > 0" :class="indentClass(line.indent)">・</span>
-          <!-- ノード内容 -->
+          <span v-if="line.indent > 0" :class="indentClass(line)">・</span>
+          <!-- ノード -->
           <span v-for="node in line.nodes">
-            <!-- プレーンテキスト -->
-            <span v-if="node.type === 'plain'">
-              <span>{{ node.text }}</span>
-            </span>
-            <!-- リンク -->
-            <span v-if="node.type === 'link'">
-              <!-- 外部リンク -->
-              <span v-if="node.pathType === 'absolute'">
-                <!-- YouTube -->
-                <span v-if="node.href.includes('youtube.com') || node.href.includes('youtu.be')">
-                  <YouTube :src="node.href" />
-                </span>
-                <!-- テキストリンク -->
-                <span v-else>
-                  <NuxtLink :to="node.href" class="underline text-blue-500" target="_blank">
-                    {{ node.content === '' ? node.href : node.content }}
-                  </NuxtLink>
-                </span>
-              </span>
-              <!-- 外部 Scrapbox -->
-              <span v-if="node.pathType === 'root'">
-                <NuxtLink :to="`https://scrapbox.io${node.href}/`" target="_blank" class="underline text-blue-500">
-                  {{ node.href }}
-                </NuxtLink>
-              </span>
-              <!-- 内部リンク -->
-              <span v-if="node.pathType === 'relative'">
-                <NuxtLink :to="node.href" class="text-blue-500">{{ node.href }}</NuxtLink>
-              </span>
-            </span>
-            <!-- 画像 -->
-            <span v-if="node.type === 'image'">
-              <img :src="node.src" class="max-h-80" />
-            </span>
-            <!-- 装飾 -->
-            <span v-if="node.type === 'decoration'">
-              <span v-for="childNode in node.nodes" :class="decorationClass(node.decos)">
-                <span>{{ childNode.text }}</span>
-                <!-- TODO: プレーンテキストやリンクの区別 -->
-              </span>
-            </span>
+            <Node :node="node" />
           </span>
         </div>
       </div>
