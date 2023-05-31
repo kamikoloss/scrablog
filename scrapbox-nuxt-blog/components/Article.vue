@@ -7,9 +7,9 @@ const lines = parse(props.page.lines.join('\n'))
 console.log(lines)
 
 const lineClass = (line) => {
-  const hasImage = line.nodes?.filter(node => node.type === 'image').length > 0
-  const isSingleNode = line.nodes?.length === 1
-  const isQuote = line.nodes?.filter(node => node.type === 'quote').length > 0
+  const hasImage = line.nodes.filter(node => node.type === 'image').length > 0
+  const isSingleNode = line.nodes.length === 1
+  const isQuote = line.nodes.filter(node => node.type === 'quote').length > 0
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
@@ -46,15 +46,22 @@ const indentClass = (line) => {
       <!-- 本文 -->
       <div class="my-16">
         <!-- 行 -->
-        <div v-for="line in lines" :class="lineClass(line)">
-          <!-- 空行 -->
-          <div v-if="line.nodes?.length === 0" class="my-8"></div>
-          <!-- インデント -->
-          <span v-if="line.indent > 0" :class="indentClass(line)">・</span>
-          <!-- ノード -->
-          <span v-for="node in line.nodes">
-            <Node :node="node" />
-          </span>
+        <div v-for="line in lines">
+          <!-- line -->
+          <div v-if="line.type === 'line'" :class="lineClass(line)">
+            <!-- 空行 -->
+            <div v-if="line.nodes.length === 0" class="my-8"></div>
+            <!-- インデント -->
+            <span v-if="line.indent > 0" :class="indentClass(line)">・</span>
+            <!-- ノード -->
+            <span v-for="node in line.nodes">
+              <Node :node="node" />
+            </span>
+          </div>
+          <!-- table -->
+          <div v-if="line.type === 'table'" class="my-2">
+            <LineTable :line="line" class="w-full" />
+          </div>
         </div>
       </div>
     </div>
