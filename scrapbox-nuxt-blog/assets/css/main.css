@@ -5,7 +5,5 @@
 @layer base {
   :root {
     font-family: 'Noto Sans JP', sans-serif;
-    color: var(--text-color);
-    --text-color: #111827; /* gray-900 */
   }
 }

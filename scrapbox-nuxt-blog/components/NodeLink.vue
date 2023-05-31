@@ -3,7 +3,7 @@ const props = defineProps({ node: Object })
 
 const linkClass = (node) => {
   return {
-    'underline': node.PathType === 'absolute' || node.PathType === 'root',
+    'underline': node.pathType === 'absolute' || node.pathType === 'root',
     'text-blue-500': true,
   }
 }
@@ -19,7 +19,7 @@ const linkClass = (node) => {
       </span>
       <!-- テキストリンク -->
       <span v-else>
-        <NuxtLink :to="node.href" :class="linkClass(node)" target="_blank">
+        <NuxtLink :to="node.href" target="_blank" :class="linkClass(node)">
           {{ node.content === '' ? node.href : node.content }}
         </NuxtLink>
       </span>
