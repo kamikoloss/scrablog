@@ -32,6 +32,14 @@ const decorationClass = (node) => {
     <span v-if="node.type === 'plain'">
       <span>{{ node.text }}</span>
     </span>
+    <!-- コードブロック (インライン) -->
+    <span v-if="node.type === 'code'">
+      <CodeBlock :code="node.text" inline />
+    </span>
+    <!-- コマンドライン -->
+    <span v-if="node.type === 'commandLine'">
+      <CodeBlock :code="node.text" inline />
+    </span>
     <!-- リンク -->
     <span v-if="node.type === 'link'">
       <NodeLink :node="node" />

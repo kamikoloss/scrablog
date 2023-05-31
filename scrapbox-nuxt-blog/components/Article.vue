@@ -13,9 +13,10 @@ const lineClass = (line) => {
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
+    'leading-4': isQuote,
     'bg-gray-100': isQuote,
     'px-4': isQuote,
-    'py-1': isQuote,
+    'py-2': isQuote,
     'my-2': !isQuote,
   }
 }
@@ -61,6 +62,10 @@ const indentClass = (line) => {
           <!-- table -->
           <div v-if="line.type === 'table'" class="my-2">
             <LineTable :line="line" class="w-full" />
+          </div>
+          <!-- codeBlock -->
+          <div v-if="line.type === 'codeBlock'" class="my-2">
+            <CodeBlock :code="line.content"></CodeBlock>
           </div>
         </div>
       </div>
