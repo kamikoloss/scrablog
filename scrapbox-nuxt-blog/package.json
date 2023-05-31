@@ -11,12 +11,14 @@
   "devDependencies": {
     "@nuxt/content": "^2.6.0",
     "@types/node": "^18",
+    "@types/prismjs": "^1.26.0",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.5.1",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
-    "@progfay/scrapbox-parser": "^8.1.0"
+    "@progfay/scrapbox-parser": "^8.1.0",
+    "prismjs": "^1.29.0"
   }
 }
