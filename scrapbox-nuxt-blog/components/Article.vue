@@ -4,7 +4,6 @@ import { parse } from '@progfay/scrapbox-parser'
 
 const props = defineProps({ page: Object })
 const lines = parse(props.page.lines.join('\n'))
-console.log(lines)
 </script>
 
 <template>
