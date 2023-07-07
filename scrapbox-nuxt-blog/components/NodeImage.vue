@@ -9,9 +9,7 @@ const imageClass = (node) => {
 </script>
 
 <template>
-  <span>
-    <NuxtLink :to="node.src" target="_blank">
-      <img :src="node.src" :class="imageClass(node)" />
-    </NuxtLink>
-  </span>
+  <NuxtLink :to="node.src" target="_blank">
+    <img :src="node.src" :class="imageClass(node)" />
+  </NuxtLink>
 </template>

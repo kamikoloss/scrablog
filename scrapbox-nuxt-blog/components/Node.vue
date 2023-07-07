@@ -29,36 +29,29 @@ const decorationClass = (node) => {
 <template>
   <span>
     <!-- プレーンテキスト -->
-    <span v-if="node.type === 'plain'">
-      <span>{{ node.text }}</span>
-    </span>
-    <!-- コードブロック (インライン) -->
-    <span v-if="node.type === 'code'">
-      <CodeBlock :code="node.text" inline />
-    </span>
-    <!-- コマンドライン -->
-    <span v-if="node.type === 'commandLine'">
-      <CodeBlock :code="node.text" inline />
-    </span>
+    <span v-if="node.type === 'plain'">{{ node.text }}</span>
     <!-- リンク -->
-    <span v-if="node.type === 'link'">
-      <NodeLink :node="node" />
-    </span>
+    <NodeLink
+      v-if="node.type === 'link'"
+      :node="node"
+    />
     <!-- 画像 -->
-    <span v-if="node.type === 'image' || node.type === 'strongImage'">
-      <NodeImage :node="node" />
-    </span>
-    <!-- 引用 -->
-    <span v-if="node.type === 'quote'">
-      <span v-for="childNode in node.nodes">
-        <Node :node="childNode" />
-      </span>
-    </span>
-    <!-- 装飾 -->
-    <span v-if="node.type === 'decoration'">
-      <span v-for="childNode in node.nodes" :class="decorationClass(node)">
-        <Node :node="childNode" />
-      </span>
-    </span>
+    <NodeImage
+      v-if="node.type === 'image' || node.type === 'strongImage'"
+      :node="node"
+    />
+    <!-- コードブロック (インライン), コマンドライン -->
+    <CodeBlock
+      v-if="node.type === 'code' || node.type === 'commandLine'"
+      :code="node.text"
+      inline
+    />
+    <!-- 装飾, 引用 -->
+    <Node
+      v-if="node.type === 'decoration' || node.type === 'quote'"
+      v-for="childNode in node.nodes"
+      :node="childNode"
+      :class="decorationClass(node)"
+    />
   </span>
 </template>
