@@ -8,11 +8,11 @@ const lineClass = (line) => {
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
-    'leading-4': isQuote,
+    'text-gray-500': isQuote,
     'bg-gray-100': isQuote,
     'px-4': isQuote,
-    'py-2': isQuote,
     'my-2': !isQuote,
+    'leading-relaxed': true,
   }
 }
 const indentClass = (line) => {

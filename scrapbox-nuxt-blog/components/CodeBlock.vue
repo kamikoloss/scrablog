@@ -23,11 +23,14 @@ onMounted(() => nuxtApp.$prism().highlightAll())
 pre[class*="language-"] {
   border: none;
   border-radius: 0;
+  background-color: #f3f4f6; /* gray-100 */
+  padding: 0.5em 1em;
 }
 :not(pre) > code[class*="language-"] {
   border: none;
   border-radius: 0;
-  padding: 0.25em 0.5em;
+  background-color: #f3f4f6; /* gray-100 */
+  padding: 0 0.5em;
 }
 .token.operator {
   background: none;
