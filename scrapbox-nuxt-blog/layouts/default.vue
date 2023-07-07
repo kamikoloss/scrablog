@@ -3,7 +3,9 @@
     <div class="w-full max-w-3xl px-8 mx-auto text-gray-900 bg-white">
       <header>
         <div class="py-32">
-          <h1 class="font-bold text-2xl">BLOG TITLE</h1>
+          <h1 class="font-bold text-2xl">
+            <NuxtLink to="/">BLOG TITLE</NuxtLink>
+          </h1>
           <p>Blog description hogehoge fugafuga.</p>
         </div>
       </header>
