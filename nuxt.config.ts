@@ -4,6 +4,7 @@ import { searchForWorkspaceRoot } from 'vite'
 export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
+    baseURL: '/scrapbox-nuxt-blog/',
     head: {
       link: [
         // Google Fonts
