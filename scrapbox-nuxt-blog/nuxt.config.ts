@@ -35,6 +35,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  nitro: {
+    // https://nitro.unjs.io/config#prerender
+    prerender: {
+      failOnError: false, 
+      crawlLinks: true,
+    },
+  },
   // https://vitejs.dev/config/server-options.html#server-fs-allow
   vite: {
     server: {
