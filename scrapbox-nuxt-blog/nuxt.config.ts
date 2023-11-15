@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
     baseURL: `/${projectName}/`,
-    buildAssetsDir: `/${projectName}/_nuxt/`,
     head: {
       link: [
         // Google Fonts
