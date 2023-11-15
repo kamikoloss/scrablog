@@ -1,11 +1,13 @@
 import { searchForWorkspaceRoot } from 'vite'
 
+const projectName = 'scrapblog'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
-    baseURL: '/scrapbox-nuxt-blog/',
-    buildAssetsDir: '/scrapbox-nuxt-blog/_nuxt/',
+    baseURL: `/${projectName}/`,
+    buildAssetsDir: `/${projectName}/_nuxt/`,
     head: {
       link: [
         // Google Fonts
