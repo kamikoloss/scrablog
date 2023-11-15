@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
     baseURL: '/scrapbox-nuxt-blog/',
+    buildAssetsDir: '/scrapbox-nuxt-blog/_nuxt/',
     head: {
       link: [
         // Google Fonts
