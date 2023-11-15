@@ -12,6 +12,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  NUXT_DIR: $NUXT_DIR
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -36,7 +39,7 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: scrapbox-nuxt-blog/package-lock.json
+          cache-dependency-path: $NUXT_DIR/package-lock.json
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
@@ -49,21 +52,21 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            scrapbox-nuxt-blog/dist
-            scrapbox-nuxt-blog/.nuxt
+            $NUXT_DIR/dist
+            $NUXT_DIR/.nuxt
           key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         run: npm ci
-        working-directory: ./scrapbox-nuxt-blog
+        working-directory: $NUXT_DIR
       - name: Static HTML export with Nuxt
         run: npm run generate
-        working-directory: ./scrapbox-nuxt-blog
+        working-directory: $NUXT_DIR
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./scrapbox-nuxt-blog/dist
+          path: ./$NUXT_DIR/dist
 
   # Deployment job
   deploy:
