@@ -1,12 +1,10 @@
 import { searchForWorkspaceRoot } from 'vite'
 
-const projectName = 'scrapblog'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
-    baseURL: `/${projectName}/`,
+    baseURL: '/scrablog/', // TODO: env で設定できるようにする
     head: {
       link: [
         // Google Fonts
