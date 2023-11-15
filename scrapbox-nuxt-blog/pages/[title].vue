@@ -7,5 +7,5 @@ const page = data.value?.pages.find(page => page.title === title)
 </script>
 
 <template>
-  <Article :page="page" class="my-32" />
+  <Article :page="page" class="my-16" />
 </template>

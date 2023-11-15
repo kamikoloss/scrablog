@@ -7,7 +7,7 @@ const lines = parse(props.page.lines.join('\n'))
 </script>
 
 <template>
-  <article>
+  <article class="px-8 py-16 bg-white">
     <!-- タイトル, 日付 -->
     <div class="border-b border-gray-300 py-4">
       <h2 class="text-xl font-bold">

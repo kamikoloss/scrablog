@@ -4,5 +4,5 @@ const pages = data.value?.pages
 </script>
 
 <template>
-  <Article v-for="page in pages" :page="page" class="my-32" />
+  <Article v-for="page in pages" :page="page" class="my-16" />
 </template>

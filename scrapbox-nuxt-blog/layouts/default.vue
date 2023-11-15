@@ -1,8 +1,8 @@
 <template>
   <div class="bg-gray-100">
-    <div class="w-full max-w-3xl px-8 mx-auto text-gray-900 bg-white">
+    <div class="w-full max-w-3xl mx-auto text-gray-900">
       <header>
-        <div class="py-32">
+        <div class="px-8 py-16 bg-white">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">BLOG TITLE</NuxtLink>
           </h1>
