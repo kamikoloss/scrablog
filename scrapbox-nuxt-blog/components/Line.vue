@@ -11,6 +11,7 @@ const lineClass = (line) => {
     'text-gray-500': isQuote,
     'bg-gray-100': isQuote,
     'px-4': isQuote,
+    'py-2': isQuote,
     'my-2': !isQuote,
     'leading-relaxed': true,
   }
