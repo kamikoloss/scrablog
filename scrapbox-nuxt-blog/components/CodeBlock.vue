@@ -1,8 +1,7 @@
 <script setup>
-//import Prism from '@/plugins/prism'
-const nuxtApp = useNuxtApp()
 const props = defineProps({ inline: Boolean, code: String })
 
+const nuxtApp = useNuxtApp()
 onMounted(() => nuxtApp.$prism().highlightAll())
 </script>
 

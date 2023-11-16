@@ -21,6 +21,7 @@ const lineClass = (line) => {
     'leading-relaxed': true,
   }
 }
+
 const indentClass = (line) => {
   const indent = line.indent
   return {
