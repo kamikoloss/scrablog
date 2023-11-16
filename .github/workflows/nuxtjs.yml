@@ -49,7 +49,7 @@ jobs:
         run: npm install
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Download blog content
-        run: node index.js ${{ vars.SCRAPBOX_PROJECT_NAME }} ${{ vars.SCRAPBOX_CONNECT_SID }}
+        run: node index.js ${{ env.SCRAPBOX_PROJECT_NAME }} ${{ env.SCRAPBOX_CONNECT_SID }}
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Move blog content
         run: mv ${{ env.DOWNLOADER_DIR }}/content/ ${{ env.NUXT_BLOG_DIR }}/content/
