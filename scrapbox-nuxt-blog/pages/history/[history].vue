@@ -1,9 +1,13 @@
 <script setup>
+const { indexPerPage } = useAppConfig()
+
 const route = useRoute()
 const { history } = route.params
 
-const { data: pages } = await useAsyncData('history/history', () => {
-  return queryContent().sort({ created: -1 }).skip(0).limit(5).find()
+const skip = Number(history) * indexPerPage
+const limit = indexPerPage
+const { data: pages } = await useAsyncData('content', () => {
+  return queryContent().sort({ created: -1 }).skip(skip).limit(limit).find()
 })
 </script>
 
