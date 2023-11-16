@@ -1,5 +1,9 @@
 <script setup>
-const props = defineProps({ line: Object })
+const props = defineProps({
+  line: Object,
+  hasPrevLineQuote: Boolean,
+  hasNextLineQuote: Boolean,
+})
 
 const lineClass = (line) => {
   const hasImage = line.nodes.filter(node => node.type === 'image').length > 0
@@ -11,7 +15,8 @@ const lineClass = (line) => {
     'text-gray-500': isQuote,
     'bg-gray-100': isQuote,
     'px-4': isQuote,
-    'py-2': isQuote,
+    'pt-2': isQuote && !props.hasPrevLineQuote,
+    'pb-2': isQuote && !props.hasNextLineQuote,
     'my-2': !isQuote,
     'leading-relaxed': true,
   }
