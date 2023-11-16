@@ -31,18 +31,17 @@ const getScrapboxPages = async (pageList) => {
     )
     .then(responses => {
       return responses.map(response => {
-        let { title, lines, created, updated } = response.data
+        let { id, title, lines, created, updated } = response.data
         lines = lines.map(line => line.text) 
-        return { title, lines, created, updated }
+        return { id, title, lines, created, updated }
       })
     })
 }
 
 // Scrapbox のページごとに JSON ファイルを作成する
-// '/' だけパーセントエンコーディングする
 const makePageJsonFiles = (pages) => {
   pages.forEach(page => {
-    const fileName = `./content/${page.title.replace('/', '%2F')}.json`
+    const fileName = `./content/${page.id}.json`
     fs.writeFileSync(fileName, JSON.stringify(page))
   })
 }
