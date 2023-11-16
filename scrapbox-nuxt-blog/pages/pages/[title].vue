@@ -2,10 +2,9 @@
 const route = useRoute()
 const { title } = route.params
 
-const { data } = await useAsyncData('content', () => {
+const { data: page } = await useAsyncData('pages/title', () => {
   return queryContent().where({ title }).findOne()
 })
-const page = data.value
 </script>
 
 <template>

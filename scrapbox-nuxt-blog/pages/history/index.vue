@@ -1,8 +1,7 @@
 <script setup>
-const { data } = await useAsyncData('content', () => {
+const { data: pages } = await useAsyncData('history/index', () => {
   return queryContent().sort({ created: -1 }).skip(0).limit(5).find()
 })
-const pages = data.value
 </script>
 
 <template>

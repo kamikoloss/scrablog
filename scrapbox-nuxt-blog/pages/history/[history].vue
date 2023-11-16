@@ -2,10 +2,9 @@
 const route = useRoute()
 const { history } = route.params
 
-const { data } = await useAsyncData('content', () => {
+const { data: pages } = await useAsyncData('history/history', () => {
   return queryContent().sort({ created: -1 }).skip(0).limit(5).find()
 })
-const pages = data.value
 </script>
 
 <template>
