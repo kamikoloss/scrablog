@@ -16,7 +16,7 @@
       </div>
     </main>
     <footer>
-      <div class="py-8">
+      <div class="py-4">
         <p class="text-center text-sm text-gray-500">Blog footer hogehoge fufafuga.</p>
       </div>
     </footer>
