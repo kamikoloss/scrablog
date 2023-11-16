@@ -2,8 +2,10 @@
 const route = useRoute()
 const { title } = route.params
 
-const { data } = await useAsyncData('project', () => queryContent('project').findOne())
-const page = data.value?.pages.find(page => page.title === title)
+const { data } = await useAsyncData('content', () => {
+  return queryContent().where({ title }).findOne()
+})
+const page = data.value
 </script>
 
 <template>

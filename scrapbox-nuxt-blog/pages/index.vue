@@ -1,11 +1,13 @@
 <script setup>
-const { data } = await useAsyncData('project', () => queryContent('project').findOne())
-const pages = data.value?.pages
+const { data } = await useAsyncData('content', () => {
+  return queryContent().sort({ created: -1 }).skip(0).limit(5).find()
+})
+const pages = data.value
 </script>
 
 <template>
   <div>
     <Article v-for="page in pages" :page="page" class="my-32" />
-    <Paginator current-number="0" class="my-16 px-8" />
+    <Paginator :current-number="0" class="my-16 px-8" />
   </div>
 </template>

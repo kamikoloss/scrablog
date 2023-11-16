@@ -1,6 +1,8 @@
 <script setup>
-const { data } = await useAsyncData('project', () => queryContent('project').findOne())
-const pages = data.value?.pages
+const { data } = await useAsyncData('content', () => {
+  return queryContent().sort({ created: -1 }).skip(0).limit(5).find()
+})
+const pages = data.value
 </script>
 
 <template>
