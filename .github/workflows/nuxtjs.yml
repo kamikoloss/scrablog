@@ -1,28 +1,19 @@
-# Sample workflow for building and deploying a Nuxt site to GitHub Pages
-#
-# To get started with Nuxt see: https://nuxtjs.org/docs/get-started/installation
-#
 name: Deploy Nuxt site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
-  NUXT_DIR: scrapbox-nuxt-blog
+  NUXT_BLOG_DIR: scrapbox-nuxt-blog
+  DOWNLOADER_DIR: scrapbox-downloader
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -39,34 +30,40 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: ${{ env.NUXT_DIR }}/package-lock.json
+          cache-dependency-path: ${{ env.NUXT_BLOG_DIR }}/package-lock.json
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
-          # Automatically inject router.base in your Nuxt configuration file and set
-          # target to static (https://nuxtjs.org/docs/configuration-glossary/configuration-target/).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: nuxt
       - name: Restore cache
         uses: actions/cache@v3
         with:
           path: |
-            ${{ env.NUXT_DIR }}/.output/public
-            ${{ env.NUXT_DIR }}/.nuxt
+            ${{ env.NUXT_BLOG_DIR }}/.output/public
+            ${{ env.NUXT_BLOG_DIR }}/.nuxt
           key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
+      # downloader
       - name: Install dependencies
         run: npm install
-        working-directory: ${{ env.NUXT_DIR }}
+        working-directory: ${{ env.DOWNLOADER_DIR }}
+      - name: Download blog content
+        run: node index.js ${{ vars.SCRAPBOX_PROJECT_NAME }} ${{ vars.SCRAPBOX_CONNECT_SID }}
+        working-directory: ${{ env.DOWNLOADER_DIR }}
+      - name: Move blog content
+        run: mv ${{ env.DOWNLOADER_DIR }}/content/ ${{ env.NUXT_BLOG_DIR }}/content/
+      # nuxt-blog
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{ env.NUXT_BLOG_DIR }}
       - name: Static HTML export with Nuxt
         run: npm run generate
-        working-directory: ${{ env.NUXT_DIR }}
+        working-directory: ${{ env.NUXT_BLOG_DIR }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ${{ env.NUXT_DIR }}/.output/public
+          path: ${{ env.NUXT_BLOG_DIR }}/.output/public
 
   # Deployment job
   deploy:
