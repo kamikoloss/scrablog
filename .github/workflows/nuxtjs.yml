@@ -45,6 +45,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
       # downloader
+      - name: Make directories
+        run: |
+          mkdir ${{ env.DOWNLOADER_DIR }}/content
+          mkdir ${{ env.NUXT_BLOG_DIR }}/content
       - name: Install dependencies
         run: npm install
         working-directory: ${{ env.DOWNLOADER_DIR }}
