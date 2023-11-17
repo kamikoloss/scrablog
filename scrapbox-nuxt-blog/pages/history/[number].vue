@@ -15,6 +15,6 @@ const { data: pages } = await useAsyncData(`history-${currentNumber}`, () => {
 <template>
   <div>
     <Article v-for="page in pages" :page="page" class="my-32" />
-    <Paginator :current-number="currentNumber" class="my-16 px-8" />
+    <Paginator :current-number="currentNumber" class="my-32 px-8" />
   </div>
 </template>

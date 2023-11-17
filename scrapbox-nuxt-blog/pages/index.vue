@@ -11,6 +11,6 @@ const { data: pages } = await useAsyncData('index', () => {
 <template>
   <div>
     <Article v-for="page in pages" :page="page" class="my-32" />
-    <Paginator :current-number="0" class="my-16 px-8" />
+    <Paginator :current-number="0" class="my-32 px-8" />
   </div>
 </template>
