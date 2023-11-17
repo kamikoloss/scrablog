@@ -1,9 +1,20 @@
 <script setup>
 const props = defineProps({ unixTime: Number })
-const date = new Date(props.unixTime * 1000)
-const dateString = date.toISOString().slice(0, 10)
+
+const { showTime } = useAppConfig()
+
+const getDateString = (unixTime) => {
+  const date = new Date(unixTime * 1000)
+  if (showTime) {
+    // 年月日 + 時間
+    return date.toISOString().slice(0, 16).replace('T', ' ')
+  } else {
+    // 年月日のみ
+    return date.toISOString().slice(0, 10)
+  }
+}
 </script>
 
 <template>
-  <span>{{ dateString }}</span>
+  <span>{{ getDateString(unixTime) }}</span>
 </template>
