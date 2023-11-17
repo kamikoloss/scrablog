@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
 
 env:
-  NUXT_BLOG_DIR: scrapbox-nuxt-blog
   DOWNLOADER_DIR: scrapbox-downloader
+  NUXT_BLOG_DIR: scrapbox-nuxt-blog
+  SCRAPBOX_PROJECT_NAME: ${{ vars.SCRAPBOX_PROJECT_NAME }}
 
 permissions:
   contents: read
