@@ -26,7 +26,7 @@ const getScrapboxPageList = async () => {
 const getScrapboxPages = async (pageList) => {
   return await Promise
     .all(pageList
-      .filter(page => !page.title.startsWith('_'))
+      .filter(isDownloadTargetPage)
       .map(page => api.get(`/${encodeURIComponent(page.title)}`))
     )
     .then(responses => {
@@ -36,6 +36,16 @@ const getScrapboxPages = async (pageList) => {
         return { id, title, lines, created, updated }
       })
     })
+}
+
+const isDownloadTargetPage = (page) => {
+  if (page.title.startsWith('_')) {
+    return false
+  } else if (page.title === 'config') {
+    return false
+  } else {
+    return true
+  }
 }
 
 // Scrapbox のページごとに JSON ファイルを作成する
