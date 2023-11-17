@@ -6,9 +6,9 @@ const props = defineProps({
 })
 
 const lineClass = (line) => {
-  const hasImage = line.nodes.filter(node => node.type === 'image').length > 0
+  const hasImage = line.nodes.some(node => node.type === 'image')
   const isSingleNode = line.nodes.length === 1
-  const isQuote = line.nodes.filter(node => node.type === 'quote').length > 0
+  const isQuote = line.nodes.some(node => node.type === 'quote')
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
