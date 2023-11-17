@@ -4,7 +4,8 @@ import { searchForWorkspaceRoot } from 'vite'
 export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
-    baseURL: '/scrablog/', // TODO: env で設定できるようにする
+    //baseURL: '/scrablog/',
+    baseURL: `/${process.env.SCRAPBOX_PROJECT_NAME}/`,
     head: {
       link: [
         // Google Fonts
