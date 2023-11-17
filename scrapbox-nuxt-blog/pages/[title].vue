@@ -2,8 +2,8 @@
 const route = useRoute()
 const { title } = route.params
 
-const { data: page } = await useAsyncData('pages/title', () => {
-  return queryContent().where({ title }).findOne()
+const { data: page } = await useAsyncData(`index-${title}`, () => {
+  return queryContent().where({ title: title.replace(/_/g, ' ') }).findOne()
 })
 </script>
 

@@ -2,11 +2,12 @@
 const { indexPerPage } = useAppConfig()
 
 const route = useRoute()
-const { history } = route.params
+const { number } = route.params
+const currentNumber = Number(number)
 
-const skip = Number(history) * indexPerPage
+const skip = currentNumber * indexPerPage
 const limit = indexPerPage
-const { data: pages } = await useAsyncData(`history-${history}`, () => {
+const { data: pages } = await useAsyncData(`history-${currentNumber}`, () => {
   return queryContent().sort({ created: -1 }).skip(skip).limit(limit).find()
 })
 </script>
@@ -14,6 +15,6 @@ const { data: pages } = await useAsyncData(`history-${history}`, () => {
 <template>
   <div>
     <Article v-for="page in pages" :page="page" class="my-32" />
-    <Paginator :current-number="Number(history)" class="my-16 px-8" />
+    <Paginator :current-number="currentNumber" class="my-16 px-8" />
   </div>
 </template>

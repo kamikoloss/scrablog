@@ -13,7 +13,7 @@ const hasLineQuote = (index) => lines[index]?.nodes?.filter(node => node.type ==
     <!-- タイトル, 日付 -->
     <div class="border-b border-gray-300 mb-16 pb-4">
       <h2 class="text-xl font-bold">
-        <NuxtLink :to="`/pages/${page.title}`">{{ page.title }}</NuxtLink>
+        <NuxtLink :to="page.title.replace(/ /g, '_')">{{ page.title }}</NuxtLink>
       </h2>
       <div class="text-right text-gray-500 ml-auto">
         <Date :unix-time="page.created" />

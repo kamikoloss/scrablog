@@ -1,6 +1,6 @@
 <script setup>
-const { data: pages } = await useAsyncData('history/index', () => {
-  return queryContent().sort({ created: -1 }).skip(0).limit(5).find()
+const { data: pages } = await useAsyncData('history', () => {
+  return queryContent().sort({ created: -1 }).find()
 })
 </script>
 
@@ -12,7 +12,7 @@ const { data: pages } = await useAsyncData('history/index', () => {
     <ul v-for="page of pages" class="leading-relaxed">
       <li>
         <Date :unix-time="page.created" class="mr-2" />
-        <NuxtLink :to="`/pages/${page.title}`" class="text-blue-500">{{ page.title }}</NuxtLink>
+        <NuxtLink :to="page.title.replace(/ /g, '_')" class="text-blue-500">{{ page.title }}</NuxtLink>
       </li>
     </ul>
   </div>
