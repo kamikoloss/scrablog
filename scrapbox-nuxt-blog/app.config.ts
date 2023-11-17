@@ -12,10 +12,12 @@ export default defineAppConfig({
   indexPerPage: 3,
   // 記事をどのような形式で表示するか (INDEX_TYPE_FULL or INDEX_TYPE_CARD)
   indexType: INDEX_TYPE_FULL,
-  // 作成日時と更新日時の時間 (12:34 部分) を表示するか (true or false)
+  // 記事のタイトルの下の作成日時と更新日時の時間部分 (12:34) を表示するか
   showTime: true,
-  // 更新日時を表示するか (true or false)
-  showUpdate: false,
+  // 記事のタイトルの下に作成日時を表示するか
+  showCreated: true,
+  // 記事のタイトルの下に更新日時を表示するか
+  showUpdated: false,
 
   // 文字色
   textColor: 'gray-900',
