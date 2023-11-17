@@ -57,7 +57,9 @@ jobs:
         run: node index.js ${{ vars.SCRAPBOX_PROJECT_NAME }} ${{ vars.SCRAPBOX_CONNECT_SID }}
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Move blog content
-        run: mv ${{ env.DOWNLOADER_DIR }}/content/ ${{ env.NUXT_BLOG_DIR }}/content/
+        run: |
+          mv ${{ env.DOWNLOADER_DIR }}/content/ ${{ env.NUXT_BLOG_DIR }}/content/
+          mv ${{ env.DOWNLOADER_DIR }}/content/app.config.ts ${{ env.NUXT_BLOG_DIR }}/app.config.ts
       # nuxt-blog
       - name: Install dependencies
         run: npm install

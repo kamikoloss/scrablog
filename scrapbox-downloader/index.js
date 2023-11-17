@@ -56,12 +56,19 @@ const makePageJsonFiles = (pages) => {
   })
 }
 
+// config ページ内のコードを取得してファイルを作成する
+const makeAppConfigFile = async () => {
+  const fileName = `./content/app.config.ts`
+  const codeText = await api.get('/config/app.config.ts').then(response => response.data)
+  fs.writeFileSync(fileName, codeText)
+}
+
 // 引数を取得する
 const projectName = process.argv[2]
 const connectSid = process.argv[3]
 
 // メイン処理
-// node index.js <ScrapboxProjectName> [ScrapboxConnectSid]
+// node index.js <ScrapboxProjectName> <ScrapboxConnectSid>
 try {
   api = createApiInstance(projectName, connectSid)
   const pageList = await getScrapboxPageList()
@@ -69,6 +76,7 @@ try {
   const pages = await getScrapboxPages(pageList)
   console.log(`Succeed to get pages`)
   makePageJsonFiles(pages)
+  await makeAppConfigFile()
   console.log(`Complete!`)
 } catch (error) {
   console.error(error)
