@@ -3,7 +3,7 @@ const { indexPerPage } = useAppConfig()
 
 const skip = 0
 const limit = indexPerPage
-const { data: pages } = await useAsyncData('content', () => {
+const { data: pages } = await useAsyncData('index', () => {
   return queryContent().sort({ created: -1 }).skip(skip).limit(limit).find()
 })
 </script>
