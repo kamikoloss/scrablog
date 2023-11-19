@@ -8,25 +8,32 @@ const pageCount = pages.value.length
 
 const newerNumber = Number(props.currentNumber) - 1
 const olderNumber = Number(props.currentNumber) + 1
-const showNewer = newerNumber > 0
+const showNewer = newerNumber >= 0
 const showOlder = olderNumber < (pageCount / indexPerPage)
+
+const newerLink = newerNumber == 0 ? '/' : `/history/${newerNumber}`
 </script>
 
 <template>
   <nav>
     <ul class="flex">
       <!-- NEWER -->
-      <li class="w-full text-left">
-        <NuxtLink to="/" v-if="newerNumber == 0">&lt;&lt; NEWER</NuxtLink>
-        <NuxtLink :to="`/history/${newerNumber}`" v-if="showNewer">&lt;&lt; NEWER</NuxtLink>
+      <li class="w-full">
+        <NuxtLink :to="newerLink" v-if="showNewer" class="flex justify-start">
+          <span class="material-symbols-outlined">chevron_left</span>
+          <span>NEWER</span>
+        </NuxtLink>
       </li>
       <!-- HISTORY -->
       <li class="w-full text-center">
-        <NuxtLink :to="`/history`">HISTORY</NuxtLink>
+        <NuxtLink to="/history">HISTORY</NuxtLink>
       </li>
       <!-- OLDER -->
-      <li class="w-full text-right">
-        <NuxtLink :to="`/history/${olderNumber}`" v-if="showOlder">OLDER &gt;&gt;</NuxtLink>
+      <li class="w-full">
+        <NuxtLink :to="`/history/${olderNumber}`" v-if="showOlder" class="flex justify-end">
+          <span>OLDER</span>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </NuxtLink>
       </li>
     </ul>
   </nav>
