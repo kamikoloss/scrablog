@@ -1,11 +1,12 @@
 <script setup>
-const props = defineProps({ unixTime: Number })
-
-const { showTime } = useAppConfig()
+const props = defineProps({
+  unixTime: Number,
+  showTime: Boolean,
+})
 
 const getDateString = (unixTime) => {
   const date = new Date(unixTime * 1000)
-  if (showTime) {
+  if (props.showTime) {
     // 年月日 + 時間
     return date.toISOString().slice(0, 16).replace('T', ' ')
   } else {

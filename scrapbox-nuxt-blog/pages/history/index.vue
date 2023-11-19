@@ -9,9 +9,9 @@ const { data: pages } = await useAsyncData('history', () => {
     <div class="border-b border-gray-300 mb-16 pb-4">
       <h2 class="text-xl font-bold">HISTORY</h2>
     </div>
-    <ul v-for="page of pages" class="my-2">
-      <li>
-        <Date :unix-time="page.created" class="mr-2" />
+    <ul>
+      <li v-for="page of pages" class="my-2">
+        <Date :unix-time="page.created" :show-time="false" class="mr-2" />
         <NuxtLink :to="`/${page.title.replace(/ /g, '_')}`" class="text-blue-500">{{ page.title }}</NuxtLink>
       </li>
     </ul>
