@@ -22,21 +22,13 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
         v-if="appConfig.showCreated || appConfig.showUpdated"
         class="flex justify-end gap-x-4 text-gray-500 my-2"
       >
-        <span class="flex gap-x-2">
+        <span v-if="appConfig.showCreated" class="flex gap-x-2">
           <span class="material-symbols-outlined">schedule</span>
-          <Date
-            v-if="appConfig.showCreated"
-            :unix-time="page.created"
-            :show-time="appConfig.showTime"
-          />
+          <Date :unix-time="page.created" :show-time="appConfig.showTime" />
         </span>
-        <span class="flex gap-x-2">
+        <span v-if="appConfig.showUpdated" class="flex gap-x-2">
           <span class="material-symbols-outlined">update</span>
-          <Date
-            v-if="appConfig.showUpdated"
-            :unix-time="page.updated"
-            :show-time="appConfig.showTime"
-          />
+          <Date :unix-time="page.updated" :show-time="appConfig.showTime" />
         </span>
       </div>
     </div>
