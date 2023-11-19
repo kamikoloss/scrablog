@@ -18,7 +18,10 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
       <h2 class="text-xl font-bold my-2">
         <NuxtLink :to="`/${page.title.replace(/ /g, '_')}`">{{ page.title }}</NuxtLink>
       </h2>
-      <div class="flex justify-end gap-x-4 text-gray-500 my-2">
+      <div
+        v-if="appConfig.showCreated || appConfig.showUpdated"
+        class="flex justify-end gap-x-4 text-gray-500 my-2"
+      >
         <span class="flex gap-x-2">
           <span class="material-symbols-outlined">schedule</span>
           <Date
@@ -28,7 +31,7 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
           />
         </span>
         <span class="flex gap-x-2">
-          <span class="material-symbols-outlined">history</span>
+          <span class="material-symbols-outlined">update</span>
           <Date
             v-if="appConfig.showUpdated"
             :unix-time="page.updated"

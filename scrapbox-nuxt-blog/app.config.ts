@@ -3,9 +3,9 @@ const [ INDEX_TYPE_FULL, INDEX_TYPE_CARD ] = [ 1, 2 ]
 export default defineAppConfig({
   // ブログのタイトル
   blogTitle: 'Scrablog Sample',
-  // ブログのヘッダーの文章
+  // ブログのヘッダーの文章 (省略可能)
   headerText: 'Scrablog の動作サンプルと使い方です。',
-  // ブログのフッターの文章
+  // ブログのフッターの文章 (省略可能)
   footerText: 'Blog footer text sample',
 
   // 1ページあたり記事をいくつ表示するか
@@ -17,7 +17,7 @@ export default defineAppConfig({
   // 記事のタイトルの下に作成日時を表示するか
   showCreated: true,
   // 記事のタイトルの下に更新日時を表示するか
-  showUpdated: false,
+  showUpdated: true,
 
   // 文字色
   textColor: 'gray-900',
