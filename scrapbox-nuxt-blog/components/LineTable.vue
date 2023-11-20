@@ -6,7 +6,7 @@ const props = defineProps({ line: Object })
   <table class="table-fixed border-collapse">
     <thead>
       <tr>
-        <th v-for="c in line.cells[0]" class="border border-gray-300 bg-gray-100 p-2">{{ c[0].text }}</th>
+        <th v-for="c in line.cells[0]" class="bg-gray-100 border border-gray-300 p-2">{{ c[0].text }}</th>
       </tr>
     </thead>
     <tbody>

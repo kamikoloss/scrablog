@@ -5,7 +5,7 @@ const { data: pages } = await useAsyncData('history', () => {
 </script>
 
 <template>
-  <div class="my-32 px-8 py-16 bg-white">
+  <div class="bg-white my-32 px-8 py-16">
     <div class="border-b border-gray-300 mb-16 pb-4">
       <h2 class="text-xl font-bold">HISTORY</h2>
     </div>
