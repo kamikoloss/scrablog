@@ -35,8 +35,9 @@ const getScrapboxPages = async (pageList) => {
     .then(responses => {
       return responses.map(response => {
         let { id, title, lines, created, updated } = response.data
-        lines = lines.map(line => line.text) 
-        return { id, title, lines, created, updated }
+        lines = lines.map(line => line.text)
+        const tags = lines.find(line => line.includes('#'))?.split(' ') ?? []
+        return { id, title, lines, created, updated, tags }
       })
     })
 }
