@@ -1,5 +1,7 @@
 import axios from 'axios'
 import fs from 'fs'
+import scrapboxParser from '@progfay/scrapbox-parser'
+const { parse } = scrapboxParser
 
 // https://scrapbox.io/scrapboxlab/api%2Fpages%2F:projectname
 // https://scrapbox.io/scrapboxlab/api%2Fpages%2F:projectname%2F:pagetitle
@@ -36,7 +38,7 @@ const getScrapboxPages = async (pageList) => {
       return responses.map(response => {
         let { id, title, lines, created, updated } = response.data
         lines = lines.map(line => line.text)
-        const tags = lines.find(line => line.includes('#'))?.split(' ') ?? []
+        const tags = getTags(lines)
         return { id, title, lines, created, updated, tags }
       })
     })
@@ -50,6 +52,19 @@ const isDownloadTargetPage = (page) => {
   } else {
     return true
   }
+}
+
+const getTags = (lines) => {
+  const tags = []
+  const parsedLines = parse(lines.join('\n'))
+  parsedLines.forEach(line => {
+    line.nodes.forEach(node => {
+      if (node.type === 'hashTag') {
+        tags.push(node.href)
+      }
+    })
+  })
+  return tags
 }
 
 // Scrapbox のページごとに JSON ファイルを作成する
@@ -67,13 +82,8 @@ const makeAppConfigFile = async () => {
   fs.writeFileSync(fileName, codeText)
 }
 
-// 引数を取得する
-projectName = process.argv[2]
-connectSid = process.argv[3]
-
 // メイン処理
-// node index.js <ScrapboxProjectName> <ScrapboxConnectSid>
-try {
+const main = async () => {
   api = createApiInstance(connectSid)
   const pageList = await getScrapboxPageList()
   console.log(`Succeed to get page list (${pageList.length})`)
@@ -83,6 +93,14 @@ try {
   await makeAppConfigFile()
   console.log('Succeed to make files')
   console.log('Complete!')
+}
+
+// 実行
+// node index.js <ScrapboxProjectName> <ScrapboxConnectSid>
+try {
+  projectName = process.argv[2]
+  connectSid = process.argv[3]
+  await main()
 } catch (error) {
   console.error(error)
 }
