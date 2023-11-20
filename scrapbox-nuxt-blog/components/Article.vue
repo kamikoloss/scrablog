@@ -24,9 +24,8 @@ const tagNodes = getTagNodes(lines)
 </script>
 
 <template>
-  <article class="bg-white px-8 py-16">
-    <!-- タイトル, タグ, 日時 -->
-    <div class="border-b border-gray-300 mb-16">
+  <ArticleLayout>
+    <template #header>
       <h2 class="text-xl font-bold my-2">
         <NuxtLink :to="`/${page.title.replace(/ /g, '_')}`">{{ page.title }}</NuxtLink>
       </h2>
@@ -57,13 +56,14 @@ const tagNodes = getTagNodes(lines)
           <Date :unix-time="page.updated" :show-time="appConfig.showTime" />
         </span>
       </div>
-    </div>
-    <!-- 本文 -->
-    <Line
-      v-for="(line, index) in lines"
-      :line="line"
-      :hasPrevLineQuote="hasLineQuote(index - 1)"
-      :hasNextLineQuote="hasLineQuote(index + 1)"
-    />
-  </article>
+    </template>
+    <template #main>
+      <Line
+        v-for="(line, index) in lines"
+        :line="line"
+        :hasPrevLineQuote="hasLineQuote(index - 1)"
+        :hasNextLineQuote="hasLineQuote(index + 1)"
+      />
+    </template>
+  </ArticleLayout>
 </template>
