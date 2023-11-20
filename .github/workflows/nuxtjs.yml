@@ -8,7 +8,7 @@ on:
 env:
   DOWNLOADER_DIR: scrapbox-downloader
   NUXT_BLOG_DIR: scrapbox-nuxt-blog
-  SCRAPBOX_PROJECT_NAME: ${{ vars.SCRAPBOX_PROJECT_NAME }}
+  SCRAPBOX_PROJECT_NAME: ${{ secrets.SCRAPBOX_PROJECT_NAME }}
 
 permissions:
   contents: read
@@ -54,7 +54,7 @@ jobs:
         run: npm install
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Download blog content
-        run: node index.js ${{ vars.SCRAPBOX_PROJECT_NAME }} ${{ vars.SCRAPBOX_CONNECT_SID }}
+        run: node index.js ${{ secrets.SCRAPBOX_PROJECT_NAME }} ${{ secrets.SCRAPBOX_CONNECT_SID }}
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Move blog content
         run: |
