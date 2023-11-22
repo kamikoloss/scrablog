@@ -1,37 +1,3 @@
-const [ INDEX_TYPE_FULL, INDEX_TYPE_CARD ] = [ 1, 2 ]
+import { appConfig } from './config'
 
-export default defineAppConfig({
-  // ブログのタイトル
-  blogTitle: 'Scrablog Sample',
-  // ブログのヘッダーの文章 (省略可能)
-  headerText: 'Scrablog の動作サンプルと使い方です。',
-  // ブログのフッターの文章 (省略可能)
-  footerText: 'Blog footer text sample',
-  // 1ページあたり記事をいくつ表示するか
-  indexPerPage: 3,
-  // 記事をどのような形式で表示するか
-  // INDEX_TYPE_FULL or INDEX_TYPE_CARD
-  indexType: INDEX_TYPE_FULL,
-  // 記事のタイトルの下の作成日時と更新日時の時間部分 (12:34) を表示するか
-  showTime: true,
-  // 記事のタイトルの下に作成日時を表示するか
-  showCreated: true,
-  // 記事のタイトルの下に更新日時を表示するか
-  showUpdated: true,
-
-  // 色関連
-  color: {
-    // 全体の文字色
-    text: 'gray-900',
-    // 薄い文字色 (引用, フッターの文章)
-    lightText: 'gray-500',
-    // リンクの文字色
-    linkText: 'blue-500',
-    // 全体の背景色
-    background: 'gray-200',
-    // コンテンツ部分の背景色 (記事, ヘッダー)
-    contentBackground: 'white',
-    // 記事内の薄い背景色 (引用, コードブロック, テーブルのヘッダー)
-    lightBackground: 'gray-100',
-  },
-})
+export default defineAppConfig({ ...appConfig })
