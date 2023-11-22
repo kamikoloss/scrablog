@@ -1,8 +1,5 @@
 <script setup>
 const props = defineProps({ line: Object })
-
-const appConfig = useAppConfig()
-const { color } = appConfig
 </script>
 
 <template>
@@ -11,7 +8,7 @@ const { color } = appConfig
       <tr>
         <th
           v-for="c in line.cells[0]"
-          :class="`bg-${color.lightBackground} border border-gray-300 p-2`"
+          class="bg-light-bg border border-gray-300 p-2"
         >
           {{ c[0].text }}
         </th>

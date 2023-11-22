@@ -1,13 +1,10 @@
 <script setup>
-const appConfig = useAppConfig()
-const { color } = appConfig
-
 const props = defineProps({ node: Object })
 
 const linkClass = (node) => {
   return {
     'underline': node.pathType === 'absolute' || node.pathType === 'root',
-    [`text-${color.linkText}`]: true,
+    'text-link-text': true,
   }
 }
 </script>

@@ -2,11 +2,10 @@
 const props = defineProps({ page: Object })
 
 const appConfig = useAppConfig()
-const { color } = appConfig
 </script>
 
 <template>
-  <div :class="`flex items-center bg-${color.contentBackground}`">
+  <div class="flex items-center bg-content-bg">
     <!-- 画像 -->
     <div class="w-32 aspect-square bg-gray-100">
       <img v-if="page.image" :src="page.image" />
@@ -20,7 +19,7 @@ const { color } = appConfig
       <!-- 日時 -->
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        :class="`text-${color.lightText} my-2`"
+        class="text-light-text my-2"
       >
         <div v-if="appConfig.showCreated" class="flex justify-end gap-x-2">
           <span class="material-symbols-outlined">schedule</span>

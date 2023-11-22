@@ -5,9 +5,6 @@ const props = defineProps({
   hasNextLineQuote: Boolean,
 })
 
-const appConfig = useAppConfig()
-const { color } = appConfig
-
 const lineClass = (line) => {
   const hasImage = line.nodes.some(node => node.type === 'image')
   const isSingleNode = line.nodes.length === 1
@@ -15,8 +12,8 @@ const lineClass = (line) => {
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
-    [`text-${color.lightText}`]: isQuote,
-    [`bg-${color.lightBackground}`]: isQuote,
+    'text-light-text': isQuote,
+    'bg-light-bg': isQuote,
     'px-4': isQuote,
     'pt-2': isQuote && !props.hasPrevLineQuote,
     'pb-2': isQuote && !props.hasNextLineQuote,
