@@ -1,11 +1,12 @@
 <script setup>
 const appConfig = useAppConfig()
+const { color } = appConfig
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-200 text-gray-900">
+  <div :class="`min-h-screen text-${color.text} bg-${color.background}`">
     <header>
-      <div class="bg-white py-16">
+      <div :class="`bg-${color.contentBackground} py-16`">
         <div class="w-full max-w-3xl mx-auto px-8">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
@@ -21,7 +22,12 @@ const appConfig = useAppConfig()
     </main>
     <footer>
       <div class="py-4">
-        <p v-if="appConfig.footerText" class="text-center text-sm text-gray-500">{{ appConfig.footerText }}</p>
+        <p
+          v-if="appConfig.footerText"
+          :class="`text-center text-sm text-${color.lightText}`"
+        >
+          {{ appConfig.footerText }}
+        </p>
       </div>
     </footer>
   </div>

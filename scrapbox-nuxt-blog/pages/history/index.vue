@@ -1,4 +1,7 @@
 <script setup>
+const appConfig = useAppConfig()
+const { color } = appConfig
+
 const { data: pages } = await useAsyncData('history', () => {
   return queryContent().sort({ created: -1 }).find()
 })
@@ -13,7 +16,12 @@ const { data: pages } = await useAsyncData('history', () => {
       <ul>
         <li v-for="page of pages" class="my-2">
           <Date :unix-time="page.created" :show-time="false" class="mr-2" />
-          <NuxtLink :to="`/${page.title.replace(/ /g, '_')}`" class="text-blue-500">{{ page.title }}</NuxtLink>
+          <NuxtLink
+            :to="`/${page.title.replace(/ /g, '_')}`"
+            :class="`text-${color.linkText}`"
+          >
+            {{ page.title }}
+          </NuxtLink>
         </li>
       </ul>
     </template>

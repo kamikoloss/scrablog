@@ -21,16 +21,16 @@ export default defineAppConfig({
 
   // 色関連
   color: {
-    // 文字色
+    // 全体の文字色
     text: 'gray-900',
     // 薄い文字色 (引用, フッターの文章)
     lightText: 'gray-500',
     // リンクの文字色
     linkText: 'blue-500',
-    // ブログ全体の背景色
+    // 全体の背景色
     background: 'gray-200',
-    // 記事部分の背景色
-    articleBackground: 'white',
+    // コンテンツ部分の背景色 (記事, ヘッダー)
+    contentBackground: 'white',
     // 記事内の薄い背景色 (引用, コードブロック, テーブルのヘッダー)
     lightBackground: 'gray-100',
   },
