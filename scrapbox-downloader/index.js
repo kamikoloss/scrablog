@@ -61,8 +61,8 @@ const makePageJsonFiles = (pages) => {
 
 // config ページ内のコードを取得してファイルを作成する
 const makeAppConfigFile = async () => {
-  const fileName = './content/app.config.ts'
-  const codeText = await api.get(`/code/${projectName}/config/app.config.ts`).then(response => response.data)
+  const fileName = './content/config.js'
+  const codeText = await api.get(`/code/${projectName}/config/config.js`).then(response => response.data)
   fs.writeFileSync(fileName, codeText)
 }
 

@@ -58,7 +58,7 @@ jobs:
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Move blog content
         run: |
-          mv ${{ env.DOWNLOADER_DIR }}/content/app.config.ts ${{ env.NUXT_BLOG_DIR }}/app.config.ts
+          mv ${{ env.DOWNLOADER_DIR }}/content/config.js ${{ env.NUXT_BLOG_DIR }}/config.js
           mv ${{ env.DOWNLOADER_DIR }}/content/ ${{ env.NUXT_BLOG_DIR }}/content/
       # nuxt-blog
       - name: Install dependencies
