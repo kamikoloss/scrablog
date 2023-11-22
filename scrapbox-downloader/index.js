@@ -1,7 +1,5 @@
 import axios from 'axios'
 import fs from 'fs'
-import scrapboxParser from '@progfay/scrapbox-parser'
-const { parse } = scrapboxParser
 
 // https://scrapbox.io/scrapboxlab/api%2Fpages%2F:projectname
 // https://scrapbox.io/scrapboxlab/api%2Fpages%2F:projectname%2F:pagetitle
@@ -38,8 +36,7 @@ const getScrapboxPages = async (pageList) => {
       return responses.map(response => {
         let { id, title, lines, image, created, updated } = response.data
         lines = lines.map(line => line.text)
-        const tags = getTags(lines)
-        return { id, title, lines, image, created, updated, tags }
+        return { id, title, lines, image, created, updated }
       })
     })
 }
@@ -52,19 +49,6 @@ const isDownloadTargetPage = (page) => {
   } else {
     return true
   }
-}
-
-const getTags = (lines) => {
-  const tags = []
-  const parsedLines = parse(lines.join('\n'))
-  parsedLines.forEach(line => {
-    line.nodes.forEach(node => {
-      if (node.type === 'hashTag') {
-        tags.push(node.href)
-      }
-    })
-  })
-  return tags
 }
 
 // Scrapbox のページごとに JSON ファイルを作成する
