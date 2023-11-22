@@ -35,6 +35,11 @@ const decorationClass = (node) => {
       v-if="node.type === 'link'"
       :node="node"
     />
+    <!-- ハッシュタグ -->
+    <NodeHashTag
+      v-if="node.type === 'hashTag'"
+      :node="node"
+    />
     <!-- 画像 -->
     <NodeImage
       v-if="node.type === 'image' || node.type === 'strongImage'"
