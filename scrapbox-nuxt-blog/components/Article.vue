@@ -20,16 +20,16 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
       <!-- 日時 -->
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        class="flex justify-end gap-x-4 text-gray-500 my-2"
+        class="text-gray-500 my-2"
       >
-        <span v-if="appConfig.showCreated" class="flex gap-x-2">
+        <div v-if="appConfig.showCreated" class="flex justify-end gap-x-2">
           <span class="material-symbols-outlined">schedule</span>
           <Date :unix-time="page.created" :show-time="appConfig.showTime" />
-        </span>
-        <span v-if="appConfig.showUpdated" class="flex gap-x-2">
+        </div>
+        <div v-if="appConfig.showUpdated" class="flex justify-end gap-x-2">
           <span class="material-symbols-outlined">update</span>
           <Date :unix-time="page.updated" :show-time="appConfig.showTime" />
-        </span>
+        </div>
       </div>
     </template>
     <template #main>
