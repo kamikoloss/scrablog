@@ -8,5 +8,8 @@ const { data: page } = await useAsyncData(`index-${title}`, () => {
 </script>
 
 <template>
-  <Article :page="page" class="my-32" />
+  <div>
+    <Article v-if="page" :page="page" class="my-32" />
+    <ArticleNotFound v-else class="my-32" />
+  </div>
 </template>
