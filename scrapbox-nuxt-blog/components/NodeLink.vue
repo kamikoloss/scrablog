@@ -32,7 +32,7 @@ const linkClass = (node) => {
     </span>
     <!-- 内部リンク -->
     <span v-if="node.pathType === 'relative'">
-      <NuxtLink :to="node.href" :class="linkClass(node)">{{ node.href }}</NuxtLink>
+      <NuxtLink :to="`/${node.href}`" :class="linkClass(node)">{{ node.href }}</NuxtLink>
     </span>
   </span>
 </template>
