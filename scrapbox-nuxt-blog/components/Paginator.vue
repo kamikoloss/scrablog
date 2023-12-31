@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({ currentNumber: Number })
 
-const { indexPerPage } = useAppConfig()
+const { articlesPerPage } = useAppConfig()
 
 const { data: pages } = await useAsyncData('paginator', () => queryContent().find())
 const pageCount = pages.value.length
@@ -9,7 +9,7 @@ const pageCount = pages.value.length
 const newerNumber = Number(props.currentNumber) - 1
 const olderNumber = Number(props.currentNumber) + 1
 const showNewer = newerNumber >= 0
-const showOlder = olderNumber < (pageCount / indexPerPage)
+const showOlder = olderNumber < (pageCount / articlesPerPage)
 
 const newerLink = newerNumber == 0 ? '/' : `/history/${newerNumber}`
 </script>

@@ -6,12 +6,12 @@ const constants = {
 const appConfig = {
   // ブログのタイトル
   blogTitle: 'Scrablog Sample',
-  // ブログのヘッダーの文章 (省略可能)
+  // ブログのヘッダーの文章 (空白にすると省略)
   headerText: 'Scrablog の動作サンプルと使い方です。',
-  // ブログのフッターの文章 (省略可能)
+  // ブログのフッターの文章 (空白にすると省略)
   footerText: 'Blog footer text sample',
   // 1ページあたり記事をいくつ表示するか
-  indexPerPage: 3,
+  articlesPerPage: 5,
   // 記事をどのような形式で表示するか
   // INDEX_TYPE_FULL or INDEX_TYPE_CARD
   indexType: constants.INDEX_TYPE_CARD,

@@ -1,8 +1,8 @@
 <script setup>
-const { indexPerPage, indexType } = useAppConfig()
+const { articlesPerPage, indexType } = useAppConfig()
 
 const skip = 0
-const limit = indexPerPage
+const limit = articlesPerPage
 const { data: pages } = await useAsyncData('index', () => {
   return queryContent().sort({ created: -1 }).skip(skip).limit(limit).find()
 })
