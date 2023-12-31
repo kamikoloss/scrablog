@@ -12,8 +12,8 @@ const lineClass = (line) => {
   return {
     'flex': hasImage,
     'text-justify': isSingleNode,
-    'text-light-text': isQuote,
-    'bg-light-bg': isQuote,
+    'text-text-light': isQuote,
+    'bg-bg-light': isQuote,
     'px-4': isQuote,
     'pt-2': isQuote && !props.hasPrevLineQuote,
     'pb-2': isQuote && !props.hasNextLineQuote,

@@ -4,7 +4,7 @@ const props = defineProps({ node: Object })
 const linkClass = (node) => {
   return {
     'underline': node.pathType === 'absolute' || node.pathType === 'root',
-    'text-link-text': true,
+    'text-text-link': true,
   }
 }
 </script>

@@ -8,7 +8,7 @@ const props = defineProps({ line: Object })
       <tr>
         <th
           v-for="c in line.cells[0]"
-          class="bg-light-bg border border-gray-300 p-2"
+          class="bg-bg-light border border-gray-300 p-2"
         >
           {{ c[0].text }}
         </th>

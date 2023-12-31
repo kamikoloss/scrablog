@@ -15,7 +15,7 @@ const { data: pages } = await useAsyncData('history', () => {
           <Date :unix-time="page.created" :show-time="false" class="mr-2" />
           <NuxtLink
             :to="`/${page.title.replace(/ /g, '_')}`"
-            class="text-link-text"
+            class="text-text-link"
           >
             {{ page.title }}
           </NuxtLink>

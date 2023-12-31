@@ -3,9 +3,9 @@ const appConfig = useAppConfig()
 </script>
 
 <template>
-  <div class="min-h-screen text-base-text bg-base-bg">
+  <div class="min-h-screen text-text-base bg-bg-base">
     <header>
-      <div class="bg-content-bg py-16">
+      <div class="bg-bg-content py-16">
         <div class="w-full max-w-3xl mx-auto px-8">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
@@ -23,7 +23,7 @@ const appConfig = useAppConfig()
       <div class="py-4">
         <p
           v-if="appConfig.footerText"
-          class="text-center text-sm text-light-text"
+          class="text-center text-sm text-text-light"
         >
           {{ appConfig.footerText }}
         </p>

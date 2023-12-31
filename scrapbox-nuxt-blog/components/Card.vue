@@ -5,7 +5,7 @@ const appConfig = useAppConfig()
 </script>
 
 <template>
-  <div class="flex items-center bg-content-bg">
+  <div class="flex items-center bg-bg-content">
     <!-- 画像 -->
     <div class="w-32 aspect-square bg-gray-100">
       <img v-if="page.image" :src="page.image" />
@@ -19,7 +19,7 @@ const appConfig = useAppConfig()
       <!-- 日時 -->
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        class="text-light-text my-2"
+        class="text-text-light my-2"
       >
         <div v-if="appConfig.showCreated" class="flex justify-end gap-x-2">
           <span class="material-symbols-outlined">schedule</span>

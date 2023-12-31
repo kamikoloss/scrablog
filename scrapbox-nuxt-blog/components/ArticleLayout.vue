@@ -1,5 +1,5 @@
 <template>
-  <article class="bg-content-bg px-8 py-16">
+  <article class="bg-bg-content px-8 py-16">
     <div class="border-b border-gray-300 mb-16">
       <slot name="header" />
     </div>

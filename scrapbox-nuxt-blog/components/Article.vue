@@ -20,7 +20,7 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
       <!-- 日時 -->
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        class="text-light-text my-2"
+        class="text-text-light my-2"
       >
         <div v-if="appConfig.showCreated" class="flex justify-end gap-x-2">
           <span class="material-symbols-outlined">schedule</span>

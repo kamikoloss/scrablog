@@ -14,7 +14,7 @@ const appConfig = {
   indexPerPage: 3,
   // 記事をどのような形式で表示するか
   // INDEX_TYPE_FULL or INDEX_TYPE_CARD
-  indexType: constants.INDEX_TYPE_FULL,
+  indexType: constants.INDEX_TYPE_CARD,
   // 記事のタイトルの下の作成日時と更新日時の時間部分 (12:34) を表示するか
   showTime: true,
   // 記事のタイトルの下に作成日時を表示するか
@@ -25,20 +25,20 @@ const appConfig = {
 
 const colorConfig = {
   // 全体の文字色
-  'base-text': '#111827',
+  'text-base': '#111827',
   // 薄い文字色
   // (引用, フッターの文章)
-  'light-text': '#6b7280',
+  'text-light': '#6b7280',
   // リンクの文字色
-  'link-text': '#3b82f6',
+  'text-link': '#3b82f6',
   // 全体の背景色
-  'base-bg': '#e5e7eb',
+  'bg-base': '#e5e7eb',
   // コンテンツ部分の背景色
   // (記事, ヘッダー)
-  'content-bg': '#ffffff',
+  'bg-content': '#ffffff',
   // 記事内の薄い部分の背景色
   // (引用, コードブロック, テーブルのヘッダー)
-  'light-bg': '#f3f4f6',
+  'bg-light': '#f3f4f6',
 }
 
 export { constants, appConfig, colorConfig }
