@@ -3,7 +3,7 @@ const props = defineProps({ line: Object })
 </script>
 
 <template>
-  <table class="table-fixed border-collapse">
+  <table class="table-auto border-collapse">
     <thead>
       <tr>
         <th
