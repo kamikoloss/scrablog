@@ -1,4 +1,6 @@
 <script setup>
+import { indexTypes } from '~/scrablog.const';
+
 const { articlesPerPage, indexType } = useAppConfig()
 
 const route = useRoute()
@@ -14,10 +16,10 @@ const { data: pages } = await useAsyncData(`history-${currentNumber}`, () => {
 
 <template>
   <div>
-    <div v-if="indexType === 1">
+    <div v-if="indexType === indexTypes.BLOG_FULL">
       <Article v-for="page in pages" :page="page" class="my-32" />
     </div>
-    <div v-if="indexType === 2" class="my-32">
+    <div v-if="indexType === indexTypes.BLOG_CARD" class="my-32">
       <Card v-for="page in pages" :page="page" class="my-8" />
     </div>
     <Paginator :current-number="currentNumber" class="my-32 px-8" />
