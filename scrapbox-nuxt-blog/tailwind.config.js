@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import { colorConfig } from './config'
+import { colorConfig } from './scrablog.config'
 
 module.exports = {
   content: [

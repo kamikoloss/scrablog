@@ -1,3 +1,3 @@
-import { appConfig } from './config'
+import { appConfig } from './scrablog.config'
 
 export default defineAppConfig({ ...appConfig })
