@@ -1,9 +1,16 @@
 <script setup>
-const route = useRoute()
-const { title } = route.params
+const appConfig = useAppConfig()
 
-const { data: page } = await useAsyncData(`index-${title}`, () => {
-  return queryContent().where({ title: title.replace(/_/g, ' ') }).findOne()
+const route = useRoute()
+const { title: routeTitle } = route.params
+const articleTitle = routeTitle.replace(/_/g, ' ')
+
+useHead({
+  title: `${appConfig.blogTitle} - ${articleTitle}`,
+})
+
+const { data: page } = await useAsyncData(`index-${routeTitle}`, () => {
+  return queryContent().where({ title: articleTitle }).findOne()
 })
 </script>
 

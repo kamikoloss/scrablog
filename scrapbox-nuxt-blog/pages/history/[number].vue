@@ -1,14 +1,18 @@
 <script setup>
 import { indexTypes } from '~/scrablog.const';
 
-const { articlesPerPage, indexType } = useAppConfig()
+const appConfig = useAppConfig()
 
 const route = useRoute()
 const { number } = route.params
 const currentNumber = Number(number)
 
-const skip = currentNumber * articlesPerPage
-const limit = articlesPerPage
+useHead({
+  title: appConfig.blogTitle,
+})
+
+const skip = currentNumber * appConfig.articlesPerPage
+const limit = appConfig.articlesPerPage
 const { data: pages } = await useAsyncData(`history-${currentNumber}`, () => {
   return queryContent().sort({ created: -1 }).skip(skip).limit(limit).find()
 })
@@ -16,10 +20,10 @@ const { data: pages } = await useAsyncData(`history-${currentNumber}`, () => {
 
 <template>
   <div>
-    <div v-if="indexType === indexTypes.BLOG_FULL">
+    <div v-if="appConfig.indexType === indexTypes.BLOG_FULL">
       <Article v-for="page in pages" :page="page" class="my-32" />
     </div>
-    <div v-if="indexType === indexTypes.BLOG_CARD" class="my-32">
+    <div v-if="appConfig.indexType === indexTypes.BLOG_CARD" class="my-32">
       <Card v-for="page in pages" :page="page" class="my-8" />
     </div>
     <Paginator :current-number="currentNumber" class="my-32 px-8" />

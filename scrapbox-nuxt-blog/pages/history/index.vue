@@ -1,4 +1,10 @@
 <script setup>
+const appConfig = useAppConfig()
+
+useHead({
+  title: `${appConfig.blogTitle} - HISTORY`,
+})
+
 const { data: pages } = await useAsyncData('history', () => {
   return queryContent().sort({ created: -1 }).find()
 })
