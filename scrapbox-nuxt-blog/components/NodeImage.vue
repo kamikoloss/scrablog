@@ -4,6 +4,8 @@ const props = defineProps({ node: Object })
 const imageClass = (node) => {
   return {
     'max-h-80': node.type === 'image',
+    'border': true,
+    'border-gray-300': true,
   }
 }
 </script>
