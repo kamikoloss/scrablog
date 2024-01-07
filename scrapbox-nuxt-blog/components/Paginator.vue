@@ -19,8 +19,8 @@ const newerLink = newerNumber == 0 ? '/' : `/history/${newerNumber}`
     <ul class="flex">
       <!-- NEWER -->
       <li class="w-full">
-        <NuxtLink :to="newerLink" v-if="showNewer" class="flex justify-start">
-          <span class="material-symbols-outlined">chevron_left</span>
+        <NuxtLink :to="newerLink" v-if="showNewer" class="flex gap-x-2 justify-start">
+          <span class="material-symbols-outlined text-base">chevron_left</span>
           <span>NEWER</span>
         </NuxtLink>
       </li>
@@ -30,9 +30,9 @@ const newerLink = newerNumber == 0 ? '/' : `/history/${newerNumber}`
       </li>
       <!-- OLDER -->
       <li class="w-full">
-        <NuxtLink :to="`/history/${olderNumber}`" v-if="showOlder" class="flex justify-end">
+        <NuxtLink :to="`/history/${olderNumber}`" v-if="showOlder" class="flex gap-x-2 justify-end">
           <span>OLDER</span>
-          <span class="material-symbols-outlined">chevron_right</span>
+          <span class="material-symbols-outlined text-base">chevron_right</span>
         </NuxtLink>
       </li>
     </ul>
