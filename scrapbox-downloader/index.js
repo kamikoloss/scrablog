@@ -10,6 +10,7 @@ let connectSid = ''
 
 // Scrapbox の API インスタンスを作成する
 // 事前に環境変数を設定する必要がある
+// TODO: Public プロジェクト用に SID の設定を任意にする
 const createApiInstance = (connectSid) => {
   return axios.create({
     baseURL: `https://scrapbox.io/api`,
@@ -62,7 +63,9 @@ const makePageJsonFiles = (pages) => {
 // config ページ内のコードを取得してファイルを作成する
 const makeAppConfigFile = async () => {
   const fileName = './content/config.js'
-  const codeText = await api.get(`/code/${projectName}/config/config.js`).then(response => response.data)
+  const codeText = await api
+    .get(`/code/${projectName}/config/scrablog.config.js`)
+    .then(response => response.data)
   fs.writeFileSync(fileName, codeText)
 }
 
