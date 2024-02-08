@@ -62,7 +62,7 @@ const makePageJsonFiles = (pages) => {
 
 // config ページ内のコードを取得してファイルを作成する
 const makeAppConfigFile = async () => {
-  const fileName = './content/config.js'
+  const fileName = './content/scrablog.config.js'
   const codeText = await api
     .get(`/code/${projectName}/config/scrablog.config.js`)
     .then(response => response.data)
@@ -72,13 +72,13 @@ const makeAppConfigFile = async () => {
 // メイン処理
 const main = async () => {
   api = createApiInstance(connectSid)
+  console.log('Getting page list...')
   const pageList = await getScrapboxPageList()
-  console.log(`Succeed to get page list (${pageList.length})`)
+  console.log('Getting pages...')
   const pages = await getScrapboxPages(pageList)
-  console.log('Succeed to get pages')
+  console.log('Making files...')
   makePageJsonFiles(pages)
   await makeAppConfigFile()
-  console.log('Succeed to make files')
   console.log('Complete!')
 }
 
