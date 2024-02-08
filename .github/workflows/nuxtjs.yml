@@ -8,7 +8,6 @@ on:
 env:
   DOWNLOADER_DIR: scrapbox-downloader
   NUXT_BLOG_DIR: scrapbox-nuxt-blog
-  SCRAPBOX_PROJECT_NAME: ${{ secrets.SCRAPBOX_PROJECT_NAME }}
 
 permissions:
   contents: read
@@ -58,7 +57,7 @@ jobs:
         working-directory: ${{ env.DOWNLOADER_DIR }}
       - name: Move blog content
         run: |
-          mv ${{ env.DOWNLOADER_DIR }}/content/config.js ${{ env.NUXT_BLOG_DIR }}/config.js
+          mv ${{ env.DOWNLOADER_DIR }}/content/scrablog.config.js ${{ env.NUXT_BLOG_DIR }}/scrablog.config.js
           mv ${{ env.DOWNLOADER_DIR }}/content/ ${{ env.NUXT_BLOG_DIR }}/content/
       # nuxt-blog
       - name: Install dependencies
