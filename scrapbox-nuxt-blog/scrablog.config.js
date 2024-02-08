@@ -9,6 +9,8 @@ const appConfig = {
   headerText: 'Scrablog の動作サンプルと使い方です。',
   // ブログのフッターの文章 (空白にすると省略)
   footerText: 'Blog footer text sample',
+  // 記事一覧から除外するページ名のリスト
+  excludePages: ['kamikoloss'],
   // 1ページあたり記事をいくつ表示するか
   articlesPerPage: 5,
   // 記事をどのような形式で表示するか (BLOG_FULL or BLOG_CARD)

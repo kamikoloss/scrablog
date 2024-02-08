@@ -6,7 +6,11 @@ useHead({
 })
 
 const { data: pages } = await useAsyncData('history', () => {
-  return queryContent().sort({ created: -1 }).find()
+  let content = queryContent()
+  for (const excludePage of appConfig.excludePages) {
+    content = content.where({ title: { $not: excludePage } })
+  }
+  return content.sort({ created: -1 }).find()
 })
 </script>
 

@@ -3,7 +3,13 @@ const props = defineProps({ currentNumber: Number })
 
 const appConfig = useAppConfig()
 
-const { data: pages } = await useAsyncData('paginator', () => queryContent().find())
+const { data: pages } = await useAsyncData('paginator', () => {
+  let content = queryContent()
+  for (const excludePage of appConfig.excludePages) {
+    content = content.where({ title: { $not: excludePage } })
+  }
+  return content.find()
+})
 const pageCount = pages.value.length
 
 const newerNumber = Number(props.currentNumber) - 1

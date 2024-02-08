@@ -10,7 +10,11 @@ useHead({
 const skip = 0
 const limit = appConfig.articlesPerPage
 const { data: pages } = await useAsyncData('index', () => {
-  return queryContent().sort({ created: -1 }).skip(skip).limit(limit).find()
+  let content = queryContent()
+  for (const excludePage of appConfig.excludePages) {
+    content = content.where({ title: { $not: excludePage } })
+  }
+  return content.sort({ created: -1 }).skip(skip).limit(limit).find()
 })
 </script>
 
