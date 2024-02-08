@@ -1,11 +1,11 @@
 import { searchForWorkspaceRoot } from 'vite'
+import { appConfig } from './scrablog.config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxt/content'],
   app: {
-    //baseURL: '/scrablog/',
-    baseURL: `/${process.env.SCRAPBOX_PROJECT_NAME}/`,
+    baseURL: `/${appConfig.repositoryName}/`,
     head: {
       link: [
         // Google Fonts
