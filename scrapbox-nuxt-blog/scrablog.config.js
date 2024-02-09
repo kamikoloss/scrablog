@@ -15,6 +15,8 @@ const appConfig = {
   articlesPerPage: 5,
   // 記事をどのような形式で表示するか (BLOG_FULL or BLOG_CARD)
   indexType: indexTypes.BLOG_FULL,
+  // 作成日時と更新日時のタイムゾーン
+  timeZone: 'Asia/Tokyo',
   // 記事に作成日時を表示するか
   showCreated: true,
   // 記事に更新日時を表示するか (作成日時と異なる場合のみ)
