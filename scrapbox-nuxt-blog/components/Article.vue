@@ -14,7 +14,7 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
     <template #header>
       <!-- タイトル -->
       <h2 class="text-xl font-bold my-2">
-        <NuxtLink :to="`/${page.title.replace(/ /g, '_')}`">{{ page.title }}</NuxtLink>
+        <NuxtLink :to="`/${escapeArticleTitle(page.title)}`">{{ page.title }}</NuxtLink>
       </h2>
       <!-- 日時 -->
       <div

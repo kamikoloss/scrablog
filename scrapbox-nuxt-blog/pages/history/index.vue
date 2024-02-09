@@ -24,7 +24,7 @@ const { data: pages } = await useAsyncData('history', () => {
         <li v-for="page of pages" class="my-2">
           <Date :unix-time="page.created" :show-time="false" class="mr-2" />
           <NuxtLink
-            :to="`/${page.title.replace(/ /g, '_')}`"
+            :to="`/${escapeArticleTitle(page.title)}`"
             class="text-text-link"
           >
             {{ page.title }}

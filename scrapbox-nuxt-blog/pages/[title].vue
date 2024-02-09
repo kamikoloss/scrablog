@@ -3,7 +3,7 @@ const appConfig = useAppConfig()
 
 const route = useRoute()
 const { title: routeTitle } = route.params
-const articleTitle = routeTitle.replace(/_/g, ' ')
+const articleTitle = unescapeArticleTitle(routeTitle)
 
 useHead({
   title: `${appConfig.blogTitle} - ${articleTitle}`,

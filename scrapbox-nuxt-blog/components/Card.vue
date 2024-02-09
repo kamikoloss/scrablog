@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({ page: Object })
-const linkTo = props.page?.title.replace(/ /g, '_')
+const linkTo = escapeArticleTitle(props.page?.title)
 
 const appConfig = useAppConfig()
 </script>
