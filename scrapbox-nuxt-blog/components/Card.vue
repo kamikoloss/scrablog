@@ -21,15 +21,15 @@ const appConfig = useAppConfig()
       </h2>
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        class="w-full flex gap-x-2 text-sm text-text-light"
+        class="flex gap-x-2 text-sm text-text-light"
       >
         <div v-if="appConfig.showCreated" class="flex gap-x-2">
           <span class="material-symbols-outlined text-base">schedule</span>
-          <Date :unix-time="page.created" :show-time="appConfig.showTime" />
+          <span>{{ getDateString(page.created, appConfig.showTime) }}</span>
         </div>
         <div v-if="appConfig.showUpdated" class="flex gap-x-2">
           <span class="material-symbols-outlined text-base">update</span>
-          <Date :unix-time="page.updated" :show-time="appConfig.showTime" />
+          <span>{{ getDateString(page.updated, appConfig.showTime) }}</span>
         </div>
       </div>
     </div>
