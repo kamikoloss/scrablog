@@ -5,11 +5,6 @@
 @layer base {
   :root {
     font-family: 'Noto Sans JP', sans-serif;
-    font-size: 12px;
-  }
-  @media (min-width: 640px) {
-    :root {
-      font-size: 16px;
-    }
+    font-size: 16px;
   }
 }
