@@ -6,14 +6,7 @@ const appConfig = useAppConfig()
 </script>
 
 <template>
-  <div class="h-24 flex bg-bg-content">
-    <!-- 画像 -->
-    <NuxtLink :to="linkTo">
-      <div class="w-32 h-full shrink-0 bg-gray-100">
-        <img v-if="page.image" :src="page.image" class="w-full h-full object-cover" />
-        <div v-else />
-      </div>
-    </NuxtLink>
+  <div class="h-32 flex bg-bg-content">
     <!-- タイトル, 日時 -->
     <div class="w-full h-full flex flex-wrap content-between px-4 py-2">
       <h2 class="w-full text-xl font-bold">
@@ -33,5 +26,12 @@ const appConfig = useAppConfig()
         </div>
       </div>
     </div>
+    <!-- 画像 -->
+    <NuxtLink :to="linkTo">
+      <div class="w-32 h-full shrink-0 bg-gray-100">
+        <img v-if="page.image" :src="page.image" class="w-full h-full object-cover" />
+        <div v-else />
+      </div>
+    </NuxtLink>
   </div>
 </template>
