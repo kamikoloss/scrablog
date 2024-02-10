@@ -24,3 +24,11 @@ export const escapeArticleTitle = (title: string): string => {
 export const unescapeArticleTitle = (title: string): string => {
   return title.replace(/_/g, ' ').replace(/%2F/g, '/')
 }
+
+// queryContent の where not を配列に対応させたもの
+export const whereNotIn = (query: any, key: string, notList: string[]) => {
+  for (const notElement of notList) {
+    query = query.where({ [key]: { $not: notElement } })
+  }
+  return query;
+}
