@@ -17,7 +17,7 @@ const appConfig = {
   excludeTitles: ['kamikoloss'],
   // 記事一覧をどのような形式で表示するか (BLOG_FULL or BLOG_CARD)
   indexType: indexTypes.BLOG_FULL,
-  // 1ページあたり記事をいくつ表示するか
+  // 記事一覧で1ページあたり記事をいくつ表示するか
   articlesPerPage: 5,
 
   // 作成日時と更新日時のタイムゾーン
