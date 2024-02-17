@@ -1,12 +1,17 @@
 <script setup>
 const appConfig = useAppConfig()
+
+const { data: profilePage } = await useAsyncData('profile', () => {
+  return queryContent().where({ title: 'profile' }).findOne()
+})
+
 </script>
 
 <template>
   <div class="min-h-screen text-text-base bg-bg-base">
     <header>
       <div class="bg-bg-content py-16">
-        <div class="w-full max-w-3xl mx-auto px-8">
+        <div class="w-full max-w-6xl mx-auto px-8">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
           </h1>
@@ -15,8 +20,23 @@ const appConfig = useAppConfig()
       </div>
     </header>
     <main>
-      <div class="w-full max-w-3xl mx-auto">
-        <slot />
+      <div class="w-full max-w-6xl flex gap-x-16 mx-auto">
+        <!-- 本体 -->
+        <div class="w-full max-w-3xl">
+          <slot />
+        </div>
+        <!-- サイドバー -->
+        <div class="w-full max-w-xs text-sm my-32" v-if="appConfig.showSideBar">
+          <!-- プロフィール -->
+          <ArticleLayout>
+            <template #header>
+              <h2 class="font-bold my-2">プロフィール</h2>
+            </template>
+            <template #main>
+              <Lines :lines="profilePage.lines" class="my-32" />
+            </template>
+          </ArticleLayout>
+        </div>
       </div>
     </main>
     <footer>
