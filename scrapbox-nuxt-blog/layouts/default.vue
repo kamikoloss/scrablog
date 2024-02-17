@@ -25,39 +25,35 @@ const { data: recentArticles } = await useAsyncData('recent', () => {
       </div>
     </header>
     <main>
-      <div class="w-full max-w-6xl flex gap-x-16 mx-auto">
+      <div class="w-full max-w-6xl flex items-start gap-x-16 mx-auto">
         <!-- 本体 -->
         <div class="w-full max-w-3xl">
           <slot />
         </div>
         <!-- サイドバー -->
-        <div class="w-full max-w-xs text-sm my-32" v-if="appConfig.showSideBar">
-          <ArticleLayout>
-            <template #main>
-              <!-- プロフィール -->
-              <div>
-                <h2 class="font-bold my-4">プロフィール</h2>
-                <Lines :lines="profileArticle.lines" class="my-32" />
-              </div>
-              <!-- 最近の記事 -->
-              <div>
-                <h2 class="font-bold my-4">最近の記事</h2>
-                <ul>
-                  <li v-for="article of recentArticles" class="my-2">
-                    <Dot />
-                    <span>{{ getDateString(article.created, false) }}</span>
-                    <span>&nbsp;</span>
-                    <NuxtLink
-                      :to="`/${escapeArticleTitle(article.title)}`"
-                      class="text-text-link"
-                    >
-                      {{ article.title }}
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </div>
-            </template>
-          </ArticleLayout>
+        <div class="w-full max-w-xs text-sm bg-bg-content my-32 px-8" v-if="appConfig.showSideBar">
+          <!-- プロフィール -->
+          <div class="my-16">
+            <h2 class="font-bold my-2">プロフィール</h2>
+            <Lines :lines="profileArticle.lines" />
+          </div>
+          <!-- 最近の記事 -->
+          <div class="my-16">
+            <h2 class="font-bold my-2">最近の記事</h2>
+            <ul>
+              <li v-for="article of recentArticles" class="my-2">
+                <Dot />
+                <span>{{ getDateString(article.created, false) }}</span>
+                <span>&nbsp;</span>
+                <NuxtLink
+                  :to="`/${escapeArticleTitle(article.title)}`"
+                  class="text-text-link"
+                >
+                  {{ article.title }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </main>
