@@ -20,7 +20,9 @@ const { data: pages } = await useAsyncData('history', () => {
     <template #main>
       <ul>
         <li v-for="page of pages" class="my-2">
-          <span class="mr-2">{{ getDateString(page.created, false) }}</span>
+          <Dot />
+          <span>{{ getDateString(page.created, false) }}</span>
+          <span>&nbsp;</span>
           <NuxtLink
             :to="`/${escapeArticleTitle(page.title)}`"
             class="text-text-link"
