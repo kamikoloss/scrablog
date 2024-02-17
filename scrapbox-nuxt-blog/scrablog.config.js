@@ -31,15 +31,7 @@ const appConfig = {
   
   // サイドバーを表示するか
   showSideBar: true,
-  // サイドバーに何を表示するか
-  sideBarContents: [
-    //sideBarContents.PROFILE,
-  	//sideBarContents.SEARCH,
-    //sideBarContents.RECENT_ARTICLES,
-  	//sideBarContents.ARTICLES_CATEGORY,
-  	//sideBarContents.ARTICLES_MONTH,
-  	//sideBarContents.ARTICLES_YEAR,
-  ],
+  // サイドバーの "最新の記事" でいくつ表示するか
   sideBarRecentArticles: 5,
 }
 
