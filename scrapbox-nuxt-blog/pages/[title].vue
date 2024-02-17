@@ -10,8 +10,8 @@ useHead({
 })
 
 const { data: page } = await useAsyncData(`index-${routeTitle}`, () => {
-  return whereNotIn(queryContent(), 'title', appConfig.excludeTitles)
-    .where({ title: articleTitle })  
+  return whereNotInTitle(queryContent())
+    .where({ title: articleTitle })
     .findOne()
 })
 </script>

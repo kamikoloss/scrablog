@@ -1,4 +1,4 @@
-import { appConfig } from "~/scrablog.config"
+import { appConfig } from '~/scrablog.config'
 
 // Unix Time を日時の文字列に変換する
 export const getDateString = (unixTime: number, showTime: boolean): string => {
@@ -26,9 +26,16 @@ export const unescapeArticleTitle = (title: string): string => {
 }
 
 // queryContent の where not を配列に対応させたもの
-export const whereNotIn = (query: any, key: string, notList: string[]) => {
-  for (const notElement of notList) {
+export const whereNotIn = (query: any, key: string, valueList: string[]) => {
+  for (const notElement of valueList) {
     query = query.where({ [key]: { $not: notElement } })
   }
-  return query;
+  return query
+}
+
+// queryContent の where not を配列に対応させたもの (title 専用)
+export const whereNotInTitle = (query: any) => {
+  const systemValueList = ['profile']
+  const valueList = [...appConfig.excludeTitles, ...systemValueList]
+  return whereNotIn(query, 'title', valueList)
 }

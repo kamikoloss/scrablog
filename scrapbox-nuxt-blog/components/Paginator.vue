@@ -4,7 +4,7 @@ const props = defineProps({ currentNumber: Number })
 const appConfig = useAppConfig()
 
 const { data: pages } = await useAsyncData('paginator', () => {
-  return whereNotIn(queryContent(), 'title', appConfig.excludeTitles).find()
+  return whereNotInTitle(queryContent()).find()
 })
 const pageCount = pages.value.length
 

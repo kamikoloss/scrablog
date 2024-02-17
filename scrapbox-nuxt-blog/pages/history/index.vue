@@ -6,7 +6,7 @@ useHead({
 })
 
 const { data: pages } = await useAsyncData('history', () => {
-  return whereNotIn(queryContent(), 'title', appConfig.excludeTitles)
+  return whereNotInTitle(queryContent())
     .sort({ created: -1 })
     .find()
 })
