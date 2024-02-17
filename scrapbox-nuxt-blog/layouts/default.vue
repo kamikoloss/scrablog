@@ -4,7 +4,7 @@ const appConfig = useAppConfig()
 const { data: profileArticle } = await useAsyncData('profile', () => {
   return queryContent().where({ title: 'profile' }).findOne()
 })
-const { data: recentArticles } = await useAsyncData('recent-articles', () => {
+const { data: recentArticles } = await useAsyncData('recent', () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })
     .limit(appConfig.sideBarRecentArticles)
@@ -36,14 +36,17 @@ const { data: recentArticles } = await useAsyncData('recent-articles', () => {
             <template #main>
               <!-- プロフィール -->
               <div>
-                <h2 class="font-bold my-2">プロフィール</h2>
+                <h2 class="font-bold my-4">プロフィール</h2>
                 <Lines :lines="profileArticle.lines" class="my-32" />
               </div>
               <!-- 最近の記事 -->
               <div>
-                <h2 class="font-bold my-2">最近の記事</h2>
+                <h2 class="font-bold my-4">最近の記事</h2>
                 <ul>
                   <li v-for="article of recentArticles" class="my-2">
+                    <Dot />
+                    <span>{{ getDateString(article.created, false) }}</span>
+                    <span>&nbsp;</span>
                     <NuxtLink
                       :to="`/${escapeArticleTitle(article.title)}`"
                       class="text-text-link"
