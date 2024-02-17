@@ -41,7 +41,7 @@ const indentClass = (line) => {
     <!-- line -->
     <div v-if="line.type === 'line'" :class="lineClass(line)">
       <!-- 空行 -->
-      <div v-if="line.nodes.length === 0" class="my-8"></div>
+      <div v-if="line.nodes.length === 0" class="my-12"></div>
       <!-- インデント -->
       <span v-if="line.indent > 0" :class="indentClass(line)">
         <span class="inline-block align-[0.15em] w-1.5 h-1.5 bg-gray-900 rounded-full mr-2"></span>
