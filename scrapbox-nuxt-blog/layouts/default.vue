@@ -29,13 +29,19 @@ const maxWidthClass = () => appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     </header>
     <!-- メイン -->
     <main>
-      <div class="w-full flex flex-wrap lg:flex-nowrap items-start gap-x-32 mx-auto" :class="maxWidthClass()">
+      <div
+        class="w-full flex flex-wrap lg:flex-nowrap items-start gap-x-32 mx-auto"
+        :class="maxWidthClass()"
+      >
         <!-- 本体 -->
         <div class="w-full">
           <slot />
         </div>
         <!-- サイドバー -->
-        <div class="w-full lg:max-w-[320px] text-sm bg-bg-content my-32 px-8" v-if="appConfig.showSideBar">
+        <div
+          class="w-full lg:max-w-[320px] text-sm bg-bg-content my-32 px-8"
+          v-if="appConfig.showSideBar"
+        >
           <!-- プロフィール -->
           <div class="my-16">
             <h2 class="font-bold my-2">プロフィール</h2>
