@@ -1,4 +1,4 @@
-import { indexTypes, sideBarContents } from './scrablog.const'
+import { indexTypes } from './scrablog.const'
 
 const appConfig = {
   // GitHub のリポジトリ名
@@ -17,7 +17,7 @@ const appConfig = {
   excludeTitles: ['kamikoloss'],
   // 記事一覧をどのような形式で表示するか (BLOG_FULL or BLOG_CARD)
   indexType: indexTypes.BLOG_FULL,
-  // 記事一覧で1ページあたり記事をいくつ表示するか
+  // 記事一覧で記事を1ページあたりいくつ表示するか
   articlesPerPage: 3,
 
   // 作成日時と更新日時のタイムゾーン
@@ -31,7 +31,7 @@ const appConfig = {
   
   // サイドバーを表示するか
   showSideBar: true,
-  // サイドバーの "最新の記事" でいくつ表示するか
+  // サイドバーの "最新の記事" で記事をいくつ表示するか
   sideBarRecentArticles: 5,
 }
 
