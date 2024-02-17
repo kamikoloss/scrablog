@@ -1,20 +1,20 @@
 <script setup>
 const props = defineProps({ page: Object })
-const linkTo = escapeArticleTitle(props.page?.title)
+const linkTo = '/' + escapeArticleTitle(props.page?.title)
 
 const appConfig = useAppConfig()
 </script>
 
 <template>
-  <div class="h-32 flex bg-bg-content">
+  <div class="min-h-[128px] flex bg-bg-content">
     <!-- タイトル, 日時 -->
-    <div class="w-full h-full flex flex-wrap content-between px-4 py-2">
-      <h2 class="w-full text-xl font-bold">
+    <div class="w-full px-4 py-2">
+      <h2 class="text-xl font-bold my-2">
         <NuxtLink :to="linkTo">{{ page.title }}</NuxtLink>
       </h2>
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        class="flex gap-x-2 text-sm text-text-light"
+        class="text-sm text-text-light"
       >
         <div v-if="appConfig.showCreated" class="flex gap-x-2">
           <span class="material-symbols-outlined text-base">schedule</span>
@@ -28,9 +28,8 @@ const appConfig = useAppConfig()
     </div>
     <!-- 画像 -->
     <NuxtLink :to="linkTo">
-      <div class="w-32 h-full shrink-0 bg-gray-100">
-        <img v-if="page.image" :src="page.image" class="w-full h-full object-cover" />
-        <div v-else />
+      <div v-if="page.image" class="w-[128px] h-full shrink-0">
+        <img :src="page.image" class="w-full h-full object-cover" />
       </div>
     </NuxtLink>
   </div>
