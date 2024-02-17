@@ -1,4 +1,4 @@
-import { indexTypes } from './scrablog.const'
+import { indexTypes, sideBarContents } from './scrablog.const'
 
 const appConfig = {
   // GitHub のリポジトリ名
@@ -18,16 +18,29 @@ const appConfig = {
   // 記事一覧をどのような形式で表示するか (BLOG_FULL or BLOG_CARD)
   indexType: indexTypes.BLOG_FULL,
   // 記事一覧で1ページあたり記事をいくつ表示するか
-  articlesPerPage: 5,
+  articlesPerPage: 3,
 
   // 作成日時と更新日時のタイムゾーン
   timeZone: 'Asia/Tokyo',
   // 記事に作成日時を表示するか
   showCreated: true,
-  // 記事に更新日時を表示するか (作成日時と異なる場合のみ)
+  // 記事に更新日時を表示するか
   showUpdated: true,
-  // 記事に作成日時と更新日時の時間部分 (12:34) を表示するか
+  // 記事の作成日時と更新日時の時間部分 (12:34) を表示するか
   showTime: true,
+  
+  // サイドバーを表示するか
+  showSideBar: true,
+  // サイドバーに何を表示するか
+  sideBarContents: [
+    //sideBarContents.PROFILE,
+  	//sideBarContents.SEARCH,
+    //sideBarContents.RECENT_ARTICLES,
+  	//sideBarContents.ARTICLES_CATEGORY,
+  	//sideBarContents.ARTICLES_MONTH,
+  	//sideBarContents.ARTICLES_YEAR,
+  ],
+  sideBarRecentArticles: 5,
 }
 
 const colorConfig = {
