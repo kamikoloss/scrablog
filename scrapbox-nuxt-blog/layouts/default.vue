@@ -10,13 +10,16 @@ const { data: recentArticles } = await useAsyncData('recent', () => {
     .limit(appConfig.sideBarRecentArticles)
     .find()
 })
+
+const maxWidthClass = () => appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
 </script>
 
 <template>
   <div class="min-h-screen text-text-base bg-bg-base">
+    <!-- ヘッダー -->
     <header>
       <div class="bg-bg-content py-16">
-        <div class="w-full max-w-6xl mx-auto px-8">
+        <div class="w-full mx-auto px-8" :class="maxWidthClass()">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
           </h1>
@@ -24,14 +27,15 @@ const { data: recentArticles } = await useAsyncData('recent', () => {
         </div>
       </div>
     </header>
+    <!-- メイン -->
     <main>
-      <div class="w-full max-w-6xl flex items-start gap-x-16 mx-auto">
+      <div class="w-full flex flex-wrap lg:flex-nowrap items-start gap-x-32 mx-auto" :class="maxWidthClass()">
         <!-- 本体 -->
-        <div class="w-full max-w-3xl">
+        <div class="w-full">
           <slot />
         </div>
         <!-- サイドバー -->
-        <div class="w-full max-w-xs text-sm bg-bg-content my-32 px-8" v-if="appConfig.showSideBar">
+        <div class="w-full lg:max-w-[320px] text-sm bg-bg-content my-32 px-8" v-if="appConfig.showSideBar">
           <!-- プロフィール -->
           <div class="my-16">
             <h2 class="font-bold my-2">プロフィール</h2>
@@ -57,6 +61,7 @@ const { data: recentArticles } = await useAsyncData('recent', () => {
         </div>
       </div>
     </main>
+    <!-- フッター -->
     <footer>
       <div class="text-center text-sm text-text-light py-4">
         <p v-if="appConfig.footerText" class="my-2">
