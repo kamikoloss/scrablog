@@ -1,12 +1,7 @@
 <script setup>
-import { parse } from '@progfay/scrapbox-parser'
-
 const props = defineProps({ page: Object })
-const lines = parse(props.page.lines.join('\n'))
 
 const appConfig = useAppConfig()
-
-const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 'quote')
 </script>
 
 <template>
@@ -32,12 +27,7 @@ const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 
       </div>
     </template>
     <template #main>
-      <Line
-        v-for="(line, index) in lines"
-        :line="line"
-        :hasPrevLineQuote="hasLineQuote(index - 1)"
-        :hasNextLineQuote="hasLineQuote(index + 1)"
-      />
+      <Lines :lines="page.lines" />
     </template>
   </ArticleLayout>
 </template>
