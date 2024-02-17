@@ -3,7 +3,7 @@ const indexTypes = {
   BLOG_CARD: 2,
 }
 
-const sideBarContetnts = {
+const sideBarContents = {
   PROFILE: 1,
   SEARCH: 2,
   RECENT_ARTICLES: 3,
@@ -12,4 +12,4 @@ const sideBarContetnts = {
   ARTICLES_YEAR: 6,
 }
 
-export { indexTypes, sideBarContetnts }
+export { indexTypes, sideBarContents }
