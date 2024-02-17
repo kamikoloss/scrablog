@@ -1,10 +1,15 @@
 <script setup>
 const appConfig = useAppConfig()
 
-const { data: profilePage } = await useAsyncData('profile', () => {
+const { data: profileArticle } = await useAsyncData('profile', () => {
   return queryContent().where({ title: 'profile' }).findOne()
 })
-
+const { data: recentArticles } = await useAsyncData('recent-articles', () => {
+  return whereNotInTitle(queryContent())
+    .sort({ created: -1 })
+    .limit(appConfig.sideBarRecentArticles)
+    .find()
+})
 </script>
 
 <template>
@@ -27,13 +32,27 @@ const { data: profilePage } = await useAsyncData('profile', () => {
         </div>
         <!-- サイドバー -->
         <div class="w-full max-w-xs text-sm my-32" v-if="appConfig.showSideBar">
-          <!-- プロフィール -->
           <ArticleLayout>
-            <template #header>
-              <h2 class="font-bold my-2">プロフィール</h2>
-            </template>
             <template #main>
-              <Lines :lines="profilePage.lines" class="my-32" />
+              <!-- プロフィール -->
+              <div>
+                <h2 class="font-bold my-2">プロフィール</h2>
+                <Lines :lines="profileArticle.lines" class="my-32" />
+              </div>
+              <!-- 最近の記事 -->
+              <div>
+                <h2 class="font-bold my-2">最近の記事</h2>
+                <ul>
+                  <li v-for="article of recentArticles" class="my-2">
+                    <NuxtLink
+                      :to="`/${escapeArticleTitle(article.title)}`"
+                      class="text-text-link"
+                    >
+                      {{ article.title }}
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </div>
             </template>
           </ArticleLayout>
         </div>
