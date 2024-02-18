@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({ page: Object })
+const props = defineProps({ article: Object })
 
 const appConfig = useAppConfig()
 </script>
@@ -9,7 +9,7 @@ const appConfig = useAppConfig()
     <template #header>
       <!-- タイトル -->
       <h2 class="text-xl font-bold my-2">
-        <NuxtLink :to="`/${escapeArticleTitle(page.title)}`">{{ page.title }}</NuxtLink>
+        <NuxtLink :to="`/${escapeArticleTitle(article.title)}`">{{ article.title }}</NuxtLink>
       </h2>
       <!-- 日時 -->
       <div
@@ -18,16 +18,16 @@ const appConfig = useAppConfig()
       >
         <div v-if="appConfig.showCreated" class="flex gap-x-2">
           <span class="material-symbols-outlined text-base">schedule</span>
-          <span>{{ getDateString(page.created, appConfig.showTime) }}</span>
+          <span>{{ getDateString(article.created, appConfig.showTime) }}</span>
         </div>
         <div v-if="appConfig.showUpdated" class="flex gap-x-2">
           <span class="material-symbols-outlined text-base">update</span>
-          <span>{{ getDateString(page.updated, appConfig.showTime) }}</span>
+          <span>{{ getDateString(article.updated, appConfig.showTime) }}</span>
         </div>
       </div>
     </template>
     <template #main>
-      <Lines :lines="page.lines" />
+      <Lines :lines="article.lines" />
     </template>
   </ArticleLayout>
 </template>

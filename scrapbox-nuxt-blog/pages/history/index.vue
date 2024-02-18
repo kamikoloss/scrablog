@@ -5,7 +5,7 @@ useHead({
   title: `${appConfig.blogTitle} - HISTORY`,
 })
 
-const { data: pages } = await useAsyncData('history', () => {
+const { data: articles } = await useAsyncData('history', () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })
     .find()
@@ -19,15 +19,15 @@ const { data: pages } = await useAsyncData('history', () => {
     </template>
     <template #main>
       <ul>
-        <li v-for="page of pages" class="my-2">
+        <li v-for="article of articles" class="my-2">
           <Dot />
-          <span>{{ getDateString(page.created, false) }}</span>
+          <span>{{ getDateString(article.created, false) }}</span>
           <span>&nbsp;</span>
           <NuxtLink
-            :to="`/${escapeArticleTitle(page.title)}`"
+            :to="`/${escapeArticleTitle(article.title)}`"
             class="text-text-link"
           >
-            {{ page.title }}
+            {{ article.title }}
           </NuxtLink>
         </li>
       </ul>

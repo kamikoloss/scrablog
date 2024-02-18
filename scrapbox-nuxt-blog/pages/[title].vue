@@ -9,7 +9,7 @@ useHead({
   title: `${appConfig.blogTitle} - ${articleTitle}`,
 })
 
-const { data: page } = await useAsyncData(`index-${routeTitle}`, () => {
+const { data: article } = await useAsyncData(`index-${routeTitle}`, () => {
   return whereNotInTitle(queryContent())
     .where({ title: articleTitle })
     .findOne()
@@ -18,7 +18,7 @@ const { data: page } = await useAsyncData(`index-${routeTitle}`, () => {
 
 <template>
   <div>
-    <Article v-if="page" :page="page" class="my-32" />
+    <Article v-if="article" :article="article" class="my-32" />
     <ArticleNotFound v-else class="my-32" />
   </div>
 </template>
