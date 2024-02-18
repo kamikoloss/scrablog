@@ -43,7 +43,7 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
           v-if="appConfig.showSideBar"
         >
           <!-- プロフィール -->
-          <div class="my-16">
+          <div class="my-16" v-if="profileArticle">
             <h2 class="font-bold my-2">プロフィール</h2>
             <Lines :lines="profileArticle.lines" />
           </div>
