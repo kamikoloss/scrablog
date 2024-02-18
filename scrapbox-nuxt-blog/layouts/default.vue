@@ -19,7 +19,7 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     <!-- ヘッダー -->
     <header>
       <div class="bg-bg-content py-16">
-        <div class="w-full mx-auto px-8" :class="maxWidthClass">
+        <div class="w-full mx-auto px-8 lg:px-16" :class="maxWidthClass">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
           </h1>
@@ -30,7 +30,10 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     <!-- メイン -->
     <main>
       <div
-        class="w-full flex flex-wrap lg:flex-nowrap items-start gap-x-32 mx-auto"
+        class="
+          w-full flex flex-wrap items-start gap-x-32 mx-auto 
+          lg:px-8 lg:flex-nowrap
+        "
         :class="maxWidthClass"
       >
         <!-- 本体 -->
