@@ -11,7 +11,7 @@ const { data: recentArticles } = await useAsyncData('recent', () => {
     .find()
 })
 
-const maxWidthClass = () => appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
+const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
 </script>
 
 <template>
@@ -19,7 +19,7 @@ const maxWidthClass = () => appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     <!-- ヘッダー -->
     <header>
       <div class="bg-bg-content py-16">
-        <div class="w-full mx-auto px-8" :class="maxWidthClass()">
+        <div class="w-full mx-auto px-8" :class="maxWidthClass">
           <h1 class="font-bold text-2xl">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
           </h1>
@@ -31,7 +31,7 @@ const maxWidthClass = () => appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     <main>
       <div
         class="w-full flex flex-wrap lg:flex-nowrap items-start gap-x-32 mx-auto"
-        :class="maxWidthClass()"
+        :class="maxWidthClass"
       >
         <!-- 本体 -->
         <div class="w-full">
@@ -63,6 +63,9 @@ const maxWidthClass = () => appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
                 </NuxtLink>
               </li>
             </ul>
+            <p class="my-2">
+              <NuxtLink to="/history" class="text-text-link">全記事一覧</NuxtLink>
+            </p>
           </div>
         </div>
       </div>
