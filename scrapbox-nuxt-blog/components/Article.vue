@@ -1,11 +1,15 @@
 <script setup>
-const props = defineProps({ article: Object })
+const props = defineProps({
+  article: Object,
+  surround: Object,
+})
 
 const appConfig = useAppConfig()
 </script>
 
 <template>
   <ArticleLayout>
+    <!-- ヘッダー -->
     <template #header>
       <!-- タイトル -->
       <h2 class="text-xl font-bold my-2">
@@ -26,8 +30,35 @@ const appConfig = useAppConfig()
         </div>
       </div>
     </template>
+    <!-- メイン: 本文 -->
     <template #main>
       <Lines :lines="article.lines" />
+    </template>
+    <!-- 下部 -->
+    <template #bottom v-if="surround && appConfig.showSurround">
+      <ul class="flex flex-wrap gap-y-4 lg:flex-nowrap lg:gap-y-0">
+        <!-- 1つ新しい記事 -->
+        <li class="w-full">
+          <NuxtLink
+            v-if="surround[0]"  
+            :to="`/${escapeArticleTitle(surround[0].title)}`" 
+            class="flex gap-x-2 justify-start">
+            <span class="material-symbols-outlined text-base">chevron_left</span>
+            <span>{{ surround[0].title }}</span>
+          </NuxtLink>
+        </li>
+        <!-- 1つ古い記事 -->
+        <li class="w-full">
+          <NuxtLink
+            v-if="surround[1]"
+            :to="`/${escapeArticleTitle(surround[1].title)}`" 
+            class="flex gap-x-2 justify-end"
+          >
+            <span>{{ surround[1].title }}</span>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+          </NuxtLink>
+        </li>
+      </ul>
     </template>
   </ArticleLayout>
 </template>
