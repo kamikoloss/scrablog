@@ -42,7 +42,7 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
         </div>
         <!-- サイドバー -->
         <div
-          class="w-full lg:max-w-[320px] text-sm bg-bg-content my-32 px-8"
+          class="w-full text-sm bg-bg-content my-32 px-8 lg:max-w-[320px]"
           v-if="appConfig.showSideBar"
         >
           <!-- プロフィール -->
