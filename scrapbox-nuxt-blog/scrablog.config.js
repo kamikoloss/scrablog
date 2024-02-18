@@ -28,7 +28,7 @@ const appConfig = {
   showUpdated: true,
   // 記事の作成日時と更新日時の時間部分 (12:34) を表示するか
   showTime: true,
-  
+
   // サイドバーを表示するか
   showSideBar: true,
   // サイドバーの "最新の記事" で記事をいくつ表示するか
