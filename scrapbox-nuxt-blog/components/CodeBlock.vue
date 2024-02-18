@@ -1,5 +1,8 @@
 <script setup>
-const props = defineProps({ inline: Boolean, code: String })
+const props = defineProps({
+  inline: Boolean,
+  code: String,
+})
 
 const nuxtApp = useNuxtApp()
 onMounted(() => nuxtApp.$prism().highlightAll())
