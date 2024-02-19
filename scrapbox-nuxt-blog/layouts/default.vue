@@ -31,7 +31,7 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     <main>
       <div
         class="
-          w-full flex flex-wrap items-start gap-x-32 mx-auto 
+          w-full flex flex-wrap items-start gap-x-16 mx-auto 
           lg:px-8 lg:flex-nowrap
         "
         :class="maxWidthClass"
@@ -42,7 +42,10 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
         </div>
         <!-- サイドバー -->
         <div
-          class="w-full text-sm bg-bg-content my-32 px-8 lg:max-w-[320px]"
+          class="
+            w-full text-sm bg-bg-content mb-32 px-8
+            lg:mt-32 lg:max-w-[320px]
+          "
           v-if="appConfig.showSideBar"
         >
           <!-- プロフィール -->
