@@ -26,6 +26,6 @@ const { data: articles } = await useAsyncData('index', () => {
     <div v-if="appConfig.indexType === indexTypes.BLOG_CARD" class="my-32">
       <Card v-for="article in articles" :article="article" class="my-8" />
     </div>
-    <Paginator :current-number="0" class="my-32 px-8" />
+    <Paginator :current-number="0" class="my-32" />
   </div>
 </template>

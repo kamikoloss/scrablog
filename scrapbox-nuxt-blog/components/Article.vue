@@ -36,26 +36,26 @@ const appConfig = useAppConfig()
     </template>
     <!-- 下部 -->
     <template #bottom v-if="surround && appConfig.showSurround">
-      <ul class="flex flex-wrap gap-y-4 lg:flex-nowrap lg:gap-y-0">
+      <ul class="flex justify-between gap-x-8">
         <!-- 1つ新しい記事 -->
-        <li class="w-full">
+        <li>
           <NuxtLink
             v-if="surround[0]"  
             :to="`/${escapeArticleTitle(surround[0].title)}`" 
-            class="flex gap-x-2 justify-start">
-            <span class="material-symbols-outlined text-base">chevron_left</span>
+            class="flex">
+            <span class="material-symbols-outlined w-8 text-base text-center shrink-0">chevron_left</span>
             <span>{{ surround[0].title }}</span>
           </NuxtLink>
         </li>
         <!-- 1つ古い記事 -->
-        <li class="w-full">
+        <li>
           <NuxtLink
             v-if="surround[1]"
             :to="`/${escapeArticleTitle(surround[1].title)}`" 
-            class="flex gap-x-2 justify-end"
+            class="flex"
           >
             <span>{{ surround[1].title }}</span>
-            <span class="material-symbols-outlined text-base">chevron_right</span>
+            <span class="material-symbols-outlined w-8 text-base text-center shrink-0">chevron_right</span>
           </NuxtLink>
         </li>
       </ul>

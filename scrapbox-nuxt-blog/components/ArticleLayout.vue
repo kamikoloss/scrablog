@@ -16,7 +16,7 @@ const hasSlot = (name) => slots[name] !== undefined
         <slot name="footer" />
       </div>
     </article>
-    <div v-if="hasSlot('bottom')" class="mt-16 px-8">
+    <div v-if="hasSlot('bottom')" class="mt-16">
       <slot name="bottom" />
     </div>
   </div>
