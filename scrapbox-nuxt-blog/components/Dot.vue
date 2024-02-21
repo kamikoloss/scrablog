@@ -1,7 +1,7 @@
 <template>
   <span class="
     inline-block
-    align-[0.15em] w-1.5 h-1.5
+    align-[0.25em] w-1 h-1
     bg-text-base rounded-full
     mr-2
   " />
