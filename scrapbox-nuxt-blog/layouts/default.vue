@@ -62,7 +62,7 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
                 <span>{{ getDateString(article.created, false) }}</span>
                 <span>&nbsp;</span>
                 <NuxtLink
-                  :to="`/${escapeArticleTitle(article.title)}`"
+                  :to="`/${article.id}`"
                   class="text-text-link"
                 >
                   {{ article.title }}

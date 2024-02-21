@@ -24,7 +24,7 @@ const { data: articles } = await useAsyncData('history', () => {
           <span>{{ getDateString(article.created, false) }}</span>
           <span>&nbsp;</span>
           <NuxtLink
-            :to="`/${escapeArticleTitle(article.title)}`"
+            :to="`/${article.id}`"
             class="text-text-link"
           >
             {{ article.title }}

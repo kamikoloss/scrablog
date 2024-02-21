@@ -13,7 +13,7 @@ const appConfig = useAppConfig()
     <template #header>
       <!-- タイトル -->
       <h2 class="text-xl font-bold my-2">
-        <NuxtLink :to="`/${escapeArticleTitle(article.title)}`">{{ article.title }}</NuxtLink>
+        <NuxtLink :to="`/${article.id}`">{{ article.title }}</NuxtLink>
       </h2>
       <!-- 日時 -->
       <div
@@ -41,7 +41,7 @@ const appConfig = useAppConfig()
         <li>
           <NuxtLink
             v-if="surround[0]"  
-            :to="`/${escapeArticleTitle(surround[0].title)}`" 
+            :to="`/${surround[0].id}`" 
             class="flex">
             <span class="material-symbols-outlined w-8 text-base text-center shrink-0">chevron_left</span>
             <span>{{ surround[0].title }}</span>
@@ -51,7 +51,7 @@ const appConfig = useAppConfig()
         <li>
           <NuxtLink
             v-if="surround[1]"
-            :to="`/${escapeArticleTitle(surround[1].title)}`" 
+            :to="`/${surround[1].id}`" 
             class="flex"
           >
             <span>{{ surround[1].title }}</span>
