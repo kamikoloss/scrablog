@@ -8,9 +8,7 @@ let api = null
 let projectName = ''
 let connectSid = ''
 
-// Scrapbox の API インスタンスを作成する
-// 事前に環境変数を設定する必要がある
-// TODO: Public プロジェクト用に SID の設定を任意にする
+// API インスタンスを作成する
 const createApiInstance = (connectSid) => {
   return axios.create({
     baseURL: `https://scrapbox.io/api`,
@@ -19,18 +17,18 @@ const createApiInstance = (connectSid) => {
   })
 }
 
-// Scrapbox のページの一覧情報を取得する
-const getScrapboxPageList = async () => {
+// ページの一覧を取得する
+const getPageList = async () => {
   return await api
     .get(`/pages/${projectName}`, { params: { limit: 1000 } })
     .then(response => response.data?.pages)
 }
 
-// Scrapbox のページごとに内容を取得する
-const getScrapboxPages = async (pageList) => {
+// ページの内容を一括取得する
+const getPages = async (pageList) => {
   return await Promise
     .all(pageList
-      .filter(isDownloadTargetPage)
+      .filter(isTargetPage)
       .map(page => api.get(`/pages/${projectName}/${encodeURIComponent(page.title)}`))
     )
     .then(responses => {
@@ -42,7 +40,7 @@ const getScrapboxPages = async (pageList) => {
     })
 }
 
-const isDownloadTargetPage = (page) => {
+const isTargetPage = (page) => {
   if (page.title.startsWith('_')) {
     return false
   } else if (page.title === 'config') {
@@ -52,8 +50,8 @@ const isDownloadTargetPage = (page) => {
   }
 }
 
-// Scrapbox のページごとに JSON ファイルを作成する
-const makePageJsonFiles = (pages) => {
+// ページの JSON ファイルを一括作成する
+const makePageFiles = (pages) => {
   pages.forEach(page => {
     const fileName = `./content/${page.id}.json`
     fs.writeFileSync(fileName, JSON.stringify(page))
@@ -61,7 +59,7 @@ const makePageJsonFiles = (pages) => {
 }
 
 // config ページ内のコードを取得してファイルを作成する
-const makeAppConfigFile = async () => {
+const makeConfigFile = async () => {
   const fileName = './content/scrablog.config.js'
   const codeText = await api
     .get(`/code/${projectName}/config/scrablog.config.js`)
@@ -72,13 +70,17 @@ const makeAppConfigFile = async () => {
 // メイン処理
 const main = async () => {
   api = createApiInstance(connectSid)
+
   console.log('Getting page list...')
-  const pageList = await getScrapboxPageList()
+  const pageList = await getPageList()
+
   console.log('Getting pages...')
-  const pages = await getScrapboxPages(pageList)
+  const pages = await getPages(pageList)
+
   console.log('Making files...')
-  makePageJsonFiles(pages)
-  await makeAppConfigFile()
+  makePageFiles(pages)
+  await makeConfigFile()
+
   console.log('Complete!')
 }
 
