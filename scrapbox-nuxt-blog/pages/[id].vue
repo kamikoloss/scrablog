@@ -21,13 +21,9 @@ useHead({
 </script>
 
 <template>
-  <div>
-    <Article
-      v-if="article"
-      :article="article"
-      :surround="surround"
-      class="my-32"
-    />
-    <ArticleNotFound v-else class="my-32" />
-  </div>
+  <Article
+    :article="article"
+    :surround="surround"
+    class="my-32"
+  />
 </template>
