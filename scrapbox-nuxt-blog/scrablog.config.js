@@ -44,8 +44,6 @@ const colorConfig = {
   'text-light': '#6b7280',
   // リンクの文字色
   'text-link': '#3b82f6',
-  // リンク切れの文字色
-  'text-dead-link': '#ef4444',
   // 全体の背景色
   'bg-base': '#e5e7eb',
   // コンテンツ部分の背景色 (記事, ヘッダー)
