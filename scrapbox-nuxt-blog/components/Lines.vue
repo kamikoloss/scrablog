@@ -2,7 +2,7 @@
 import { parse } from '@progfay/scrapbox-parser'
 
 const props = defineProps({ lines: Object })
-const lines = parse(props.lines.join('\n'))
+const lines = parse(props.lines?.map(line => line.text).join('\n'))
 
 const hasLineQuote = (index) => lines[index]?.nodes?.some(node => node.type === 'quote')
 </script>
