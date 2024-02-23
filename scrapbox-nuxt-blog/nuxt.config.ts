@@ -3,7 +3,6 @@ import { appConfig } from './scrablog.config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/content'],
   app: {
     baseURL: `/${appConfig.repositoryName}/`,
     head: {
@@ -32,9 +31,13 @@ export default defineNuxtConfig({
       },
     },
   },
-  // https://nuxt.com/docs/guide/going-further/runtime-config
-  // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
-  runtimeConfig: {},
+  // https://content.nuxt.com/usage/search
+  content: {
+    experimental: {
+      search: true,
+      indexed: false,
+    }
+  },
   // https://tailwindcss.com/docs/guides/nuxtjs#3
   css: ['~/assets/css/main.css'],
   postcss: {
@@ -43,6 +46,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  modules: ['@nuxt/content'],
   nitro: {
     // https://nitro.unjs.io/config#prerender
     prerender: {
