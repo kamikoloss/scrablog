@@ -18,7 +18,7 @@ const appConfig = useAppConfig()
       <!-- 日時 -->
       <div
         v-if="appConfig.showCreated || appConfig.showUpdated"
-        class="flex gap-x-2 text-sm text-text-light my-2"
+        class="flex gap-x-4 text-sm text-text-light my-2"
       >
         <div v-if="appConfig.showCreated" class="flex gap-x-2">
           <span class="material-symbols-outlined text-base">schedule</span>
