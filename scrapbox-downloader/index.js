@@ -31,13 +31,7 @@ const getPages = async (pageList) => {
       .filter(isTargetPage)
       .map(page => api.get(`/pages/${projectName}/${encodeURIComponent(page.title)}`))
     )
-    .then(responses => {
-      return responses.map(response => {
-        let { id, title, lines, image, created, updated } = response.data
-        lines = lines.map(line => line.text)
-        return { id, title, lines, image, created, updated }
-      })
-    })
+    .then(responses => responses.map(response => response.data))
 }
 
 const isTargetPage = (page) => {
