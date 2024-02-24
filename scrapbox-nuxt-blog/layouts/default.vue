@@ -50,12 +50,12 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
         >
           <!-- プロフィール -->
           <div class="my-16" v-if="profileArticle">
-            <h2 class="font-bold my-2">プロフィール</h2>
+            <h2 class="text-base font-bold my-2">プロフィール</h2>
             <Lines :lines="profileArticle.lines" />
           </div>
           <!-- 最近の記事 -->
           <div class="my-16">
-            <h2 class="font-bold my-2">最近の記事</h2>
+            <h2 class="text-base font-bold my-2">最近の記事</h2>
             <ul>
               <li v-for="article of recentArticles" class="my-2">
                 <Dot />

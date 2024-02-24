@@ -23,7 +23,7 @@ articles.value.forEach(article => {
   <div class="my-32">
     <div class="text-text-light px-8">
       <h2 class="text-xl font-bold my-2">"{{ unescapedTitle }}" に関連する記事</h2>
-      <p class="my-2">{{ relatedArticles.length }}件見つかりました。</p>
+      <p class="my-2">{{ relatedArticles.length }} 件見つかりました。</p>
     </div>
     <Card v-for="article in relatedArticles" :article="article" class="my-8" />
   </div>
