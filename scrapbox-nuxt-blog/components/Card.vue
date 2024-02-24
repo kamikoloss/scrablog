@@ -8,8 +8,8 @@ const appConfig = useAppConfig()
 <template>
   <div class="min-h-[128px] flex bg-bg-content">
     <!-- タイトル, 日時 -->
-    <div class="w-full px-4 py-2">
-      <h2 class="text-xl font-bold my-2">
+    <div class="w-full px-8 py-2">
+      <h2 class="font-bold my-2 lg:text-xl">
         <NuxtLink :to="linkTo">{{ article.title }}</NuxtLink>
       </h2>
       <div
