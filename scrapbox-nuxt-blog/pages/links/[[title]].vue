@@ -18,7 +18,7 @@ articles.value.forEach(article => {
 
 <template>
   <div class="my-32">
-    <div class="text-text-light">
+    <div class="text-text-light px-8">
       <h2 class="text-xl font-bold my-2">"{{ title }}" に関連する記事</h2>
       <p class="my-2">{{ relatedArticles.length }}件見つかりました。</p>
     </div>
