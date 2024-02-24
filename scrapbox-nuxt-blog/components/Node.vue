@@ -4,10 +4,7 @@ const props = defineProps({ node: Object })
 const decorationClass = (node) => {
   const isBold = (decos) => {
     const regex = /\*.*/
-    for (const deco of decos) {
-      if (regex.test(deco)) return true
-    }
-    return false
+    return decos.some(deco => regex.test(deco))
   }
   const decos = node.decos ? node.decos : []
   return {
