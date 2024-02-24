@@ -8,6 +8,7 @@ const { data: allArticles } = await useAsyncData('node-link-relative', () => {
 const articleId = allArticles.value.find(article => article.title === props.node?.href)?.id
 const isArticleLink = articleId !== undefined
 const linkTo = isArticleLink ? `/${articleId}` : `/links/${props.node?.href}`
+const linkText = props.node?.type === 'hashTag' ? props.node?.raw : props.node?.href
 </script>
 
 <template>
@@ -15,6 +16,6 @@ const linkTo = isArticleLink ? `/${articleId}` : `/links/${props.node?.href}`
     :to="linkTo"
     class="text-text-link"
   >
-    {{ node.href }}
+    {{ linkText }}
   </NuxtLink>
 </template>

@@ -30,14 +30,9 @@ const decorationClass = (node) => {
   <span>
     <!-- プレーンテキスト -->
     <span v-if="node.type === 'plain'">{{ node.text }}</span>
-    <!-- リンク -->
+    <!-- リンク, ハッシュタグ -->
     <NodeLink
-      v-if="node.type === 'link'"
-      :node="node"
-    />
-    <!-- ハッシュタグ -->
-    <NodeHashTag
-      v-if="node.type === 'hashTag'"
+      v-if="node.type === 'link' || node.type === 'hashTag'"
       :node="node"
     />
     <!-- 画像 -->

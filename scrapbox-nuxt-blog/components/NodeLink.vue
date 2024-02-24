@@ -32,7 +32,7 @@ const isYouTube = href.includes('youtube.com') || href.includes('youtu.be')
     </NuxtLink>
     <!-- 内部リンク -->
     <NodeLinkRelative
-      v-if="node.pathType === 'relative'"
+      v-if="node.pathType === 'relative' || node.type === 'hashTag'"
       :node="node"
     />
   </span>
