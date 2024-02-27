@@ -7,11 +7,9 @@ const props = defineProps({
 
 const lineClass = (line) => {
   const hasImage = line.nodes.some(node => node.type === 'image')
-  const isSingleNode = line.nodes.length === 1
   const isQuote = line.nodes.some(node => node.type === 'quote')
   return {
     'flex': hasImage,
-    'text-justify': isSingleNode,
     'text-text-light': isQuote,
     'bg-bg-light': isQuote,
     'px-4': isQuote,
@@ -19,6 +17,8 @@ const lineClass = (line) => {
     'pb-2': isQuote && !props.hasNextLineQuote,
     'my-2': !isQuote,
     'leading-relaxed': true,
+    'text-justify': true,
+    'break-words': true,
   }
 }
 
