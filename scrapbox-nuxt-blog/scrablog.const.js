@@ -26,3 +26,7 @@ export const sidebarTypes = {
   ALL_ARTICLES_YEAR_MONTH: 6,
   POPULAR_TAGS: 7,
 }
+
+export const defaultArticlesPerPage = 3
+export const defaultRecentArticlesMax = 5
+export const defaultPopularTagsMax = 50
