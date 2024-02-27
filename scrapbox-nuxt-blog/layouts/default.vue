@@ -2,24 +2,15 @@
 import { sidebarTypes, defaultRecentArticlesMax } from '~/scrablog.const';
 
 const appConfig = useAppConfig()
-const sidebarRecent = appConfig
-    .sidebarContents
-    .find(content => content.type === sidebarTypes.RECENT_ARTICLES)
 
-const { data: profileArticle } = await useAsyncData('default-profile', () => {
-  return queryContent().where({ title: 'profile' }).findOne()
-})
-const { data: recentArticles } = await useAsyncData('default-recent', () => {
-  return whereNotInTitle(queryContent())
-    .sort({ created: -1 })
-    .limit(sidebarRecent?.max ?? 5)
-    .find()
-})
-const { data: allArticles } = await useAsyncData('default-articles', () => {
+const { data: articles } = await useAsyncData('default', () => {
   return whereNotInTitle(queryContent()).sort({ created: -1 }).find()
 })
+const { data: allArticles } = await useAsyncData('default-all', () => {
+  return queryContent().find()
+})
 
-const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
+const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
 </script>
 
 <template>
@@ -56,32 +47,33 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
             w-full text-sm bg-bg-content mb-32 px-8
             lg:mt-32 lg:max-w-[320px]
           "
-          v-if="appConfig.showSideBar"
+          v-if="appConfig.showSidebar"
         >
-          <!-- プロフィール -->
-          <div class="my-16" v-if="profileArticle">
-            <h2 class="text-base font-bold my-2">プロフィール</h2>
-            <Lines :lines="profileArticle.lines" />
-          </div>
-          <!-- 最近の記事 -->
-          <div class="my-16">
-            <h2 class="text-base font-bold my-2">最近の記事</h2>
-            <ul>
-              <li v-for="article of recentArticles" class="my-2">
-                <Dot />
-                <span>{{ getDateString(article.created, false) }}</span>
-                <span>&nbsp;</span>
-                <NuxtLink
-                  :to="`/${article.id}`"
-                  class="text-text-link"
-                >
-                  {{ article.title }}
-                </NuxtLink>
-              </li>
-            </ul>
-            <p class="my-2">
-              <NuxtLink to="/history" class="text-text-link">全記事一覧</NuxtLink>
-            </p>
+          <div v-for="sidebar of appConfig.sidebarContents">
+            <!-- ARTICLE: フリー記事 -->
+            <div class="my-16" v-if="sidebar.type === sidebarTypes.ARTICLE">
+              <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
+              <Lines :lines="allArticles.find(a => a.title === sidebar.title)?.lines" />
+            </div>
+            <!-- RECENT_ARTICLES: 最近の記事 -->
+            <div class="my-16" v-if="sidebar.type === sidebarTypes.RECENT_ARTICLES">
+              <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
+              <ul>
+                <li v-for="(article, index) in articles" class="my-2">
+                  <span v-if="index < (sidebar.max ?? defaultRecentArticlesMax)">
+                    <Dot />
+                    <span>{{ getDateString(article.created, false) }}</span>
+                    <span>&nbsp;</span>
+                    <NuxtLink
+                      :to="`/${article.id}`"
+                      class="text-text-link"
+                    >
+                      {{ article.title }}
+                    </NuxtLink>
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
