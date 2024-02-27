@@ -5,10 +5,10 @@
 Scrablog は [Scrapbox](https://scrapbox.io/product) をブログ形式で GitHub Pages に公開するツールです。
 
 - scrapbox-downloader
-    - Scrapbox のページを一括ダウンロードするスクリプト
-    - GitHub Actions の Node 環境上で実行される 
+    - Scrapbox のページを一括ダウンロードする
+    - JavaScript
 - scrapbox-nuxt-blog
-    - ブログ表示部分
+    - 静的ウェブサイトを生成する
     - Nuxt + Nuxt Content
 
 ## サンプル
@@ -22,10 +22,15 @@ Scrablog は [Scrapbox](https://scrapbox.io/product) をブログ形式で GitHu
 
 ### ブログを公開する
 
+Scrapbox
+
 - ブログとして公開する Scrapbox プロジェクト を作成する
 - Scrapbox に `config` ページを作成して https://scrapbox.io/scrablog/config の内容をコピペする
     - 自分のブログに合わせて内容を変更する
 - Scrapbox の Cookie の `connect.sid` を控えておく
+
+GitHub
+
 - このリポジトリを fork または clone + push する
 - GitHub Actionsを有効にする
 - Repository Secrets に以下を設定する
