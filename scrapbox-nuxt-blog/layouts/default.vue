@@ -1,5 +1,5 @@
 <script setup>
-import { sidebarTypes } from '~/scrablog.const';
+import { sidebarTypes, defaultRecentArticlesMax } from '~/scrablog.const';
 
 const appConfig = useAppConfig()
 const sidebarRecent = appConfig
@@ -28,9 +28,11 @@ const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
     <header>
       <div class="bg-bg-content py-16">
         <div class="w-full mx-auto px-8 lg:px-16" :class="maxWidthClass">
-          <h1 class="font-bold text-2xl">
+          <!-- タイトル -->
+          <h1 class="font-bold text-2xl my-2">
             <NuxtLink to="/">{{ appConfig.blogTitle }}</NuxtLink>
           </h1>
+          <!-- 説明文 -->
           <p v-if="appConfig.headerText" class="my-2">{{ appConfig.headerText }}</p>
         </div>
       </div>

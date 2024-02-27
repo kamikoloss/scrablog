@@ -1,5 +1,5 @@
 <script setup>
-import { indexTypes } from '~/scrablog.const';
+import { indexTypes, defaultArticlesPerPage } from '~/scrablog.const';
 
 const appConfig = useAppConfig()
 
@@ -8,7 +8,7 @@ useHead({
 })
 
 const skip = 0
-const limit = appConfig.articlesPerPage
+const limit = appConfig.articlesPerPage ?? defaultArticlesPerPage
 const { data: articles } = await useAsyncData('index', () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })
