@@ -1,11 +1,11 @@
 <script setup>
 const props = defineProps({ node: Object })
 
-const { data: allArticles } = await useAsyncData('node-link-relative', () => {
-  return whereNotInTitle(queryContent()).find()
+const { data: articles } = await useAsyncData('node-link-relative', () => {
+  return queryContent().find()
 })
 
-const articleId = allArticles.value.find(article => article.title === props.node?.href)?.id
+const articleId = articles.value.find(article => article.title === props.node?.href)?.id
 const isArticleLink = articleId !== undefined
 const linkTo = isArticleLink
   ?`/${articleId}`

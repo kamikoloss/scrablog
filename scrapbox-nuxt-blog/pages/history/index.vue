@@ -6,9 +6,7 @@ useHead({
 })
 
 const { data: articles } = await useAsyncData('history', () => {
-  return whereNotInTitle(queryContent())
-    .sort({ created: -1 })
-    .find()
+  return whereNotInTitle(queryContent()).sort({ created: -1 }).find()
 })
 </script>
 

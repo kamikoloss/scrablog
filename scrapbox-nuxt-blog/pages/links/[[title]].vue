@@ -4,7 +4,7 @@ const { title: routeTitle } = route.params
 const unescapedTitle = unescapeArticleTitle(routeTitle)
 
 const { data: articles } = await useAsyncData('links', () => {
-  return whereNotInTitle(queryContent()).find()
+  return whereNotInTitle(queryContent()).sort({ created: -1 }).find()
 })
 
 // title のリンクを持つ記事一覧を取得する

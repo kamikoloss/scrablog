@@ -5,14 +5,10 @@ const route = useRoute()
 const { id } = route.params
 
 const { data: article } = await useAsyncData(`index-${id}`, () => {
-  return whereNotInTitle(queryContent())
-    .where({ id })
-    .findOne()
+  return whereNotInTitle(queryContent()).where({ id }).findOne()
 })
 const { data: surround } = await useAsyncData(`index-${id}-surround`, () => {
-  return whereNotInTitle(queryContent())
-    .sort({ created: -1 })
-    .findSurround(`/${id}`)
+  return whereNotInTitle(queryContent()).sort({ created: -1 }).findSurround(`/${id}`)
 })
 
 useHead({
