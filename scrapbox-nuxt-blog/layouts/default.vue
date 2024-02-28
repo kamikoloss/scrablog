@@ -1,14 +1,17 @@
 <script setup>
 const appConfig = useAppConfig()
 
-const { data: profileArticle } = await useAsyncData('profile', () => {
+const { data: profileArticle } = await useAsyncData('default-profile', () => {
   return queryContent().where({ title: 'profile' }).findOne()
 })
-const { data: recentArticles } = await useAsyncData('recent', () => {
+const { data: recentArticles } = await useAsyncData('default-recent', () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })
     .limit(appConfig.sideBarRecentArticles)
     .find()
+})
+const { data: allArticles } = await useAsyncData('default-articles', () => {
+  return whereNotInTitle(queryContent()).sort({ created: -1 }).find()
 })
 
 const maxWidthClass = appConfig.showSideBar ? 'max-w-7xl' : 'max-w-3xl'
