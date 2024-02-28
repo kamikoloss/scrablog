@@ -1,5 +1,10 @@
 <script setup>
+import { sidebarTypes } from '~/scrablog.const';
+
 const appConfig = useAppConfig()
+const sidebarRecent = appConfig
+    .sidebarContents
+    .find(content => content.type === sidebarTypes.RECENT_ARTICLES)
 
 const { data: profileArticle } = await useAsyncData('default-profile', () => {
   return queryContent().where({ title: 'profile' }).findOne()
@@ -7,7 +12,7 @@ const { data: profileArticle } = await useAsyncData('default-profile', () => {
 const { data: recentArticles } = await useAsyncData('default-recent', () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })
-    .limit(appConfig.sideBarRecentArticles)
+    .limit(sidebarRecent?.max ?? 5)
     .find()
 })
 const { data: allArticles } = await useAsyncData('default-articles', () => {
