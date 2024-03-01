@@ -11,8 +11,8 @@ useHead({
   title: appConfig.blogTitle,
 })
 
-const skip = currentNumber * appConfig.articlesPerPage
-const limit = appConfig.articlesPerPage
+const limit = appConfig.articlesPerPage ?? defaultArticlesPerPage
+const skip = currentNumber * limit
 const { data: articles } = await useAsyncData(`history-${currentNumber}`, () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })

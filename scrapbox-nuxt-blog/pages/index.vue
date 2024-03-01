@@ -7,8 +7,8 @@ useHead({
   title: appConfig.blogTitle,
 })
 
-const skip = 0
 const limit = appConfig.articlesPerPage ?? defaultArticlesPerPage
+const skip = 0
 const { data: articles } = await useAsyncData('index', () => {
   return whereNotInTitle(queryContent())
     .sort({ created: -1 })
