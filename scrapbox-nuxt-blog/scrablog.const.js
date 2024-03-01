@@ -5,7 +5,7 @@ export const indexTypes = {
 
 export const headerNavTypes = {
   ARTICLE: 1,
-  SEARCH: 2,
+  EXTERNAL_LINK: 2,
   ALL_ARTICLES: 3,
   ALL_IMAGES: 4,
   ALL_TAGS: 5,
