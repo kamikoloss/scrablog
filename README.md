@@ -23,11 +23,11 @@ Scrablog は [Scrapbox](https://scrapbox.io/product) をブログ形式で GitHu
 | ページの種類 | URL | URL 例 |
 |:---|:---|:---|
 | 記事一覧 (トップ) | `/` | - |
-| 特定の記事 | `/[id]` | `/659e26d0525a20002549cac2` |
 | 記事一覧 (過去) | `/history/[number]` | `/history/2` |
-| 記事一覧 (リンク) | `/links/[link]` | `/links/Scrapbox` |
-| 記事一覧 (年) | `/year/[year]` | `/year/2024` |
-| 記事一覧 (月) | `/month/[month]` | `/month/2024-03` |
+| 特定の記事 | `/[id]` | `/659e26d0525a20002549cac2` |
+| 記事カード一覧 (リンク) | `/links/[link]` | `/links/Scrapbox` |
+| 記事カード一覧 (年) | `/year/[year]` | `/year/2024` |
+| 記事カード一覧 (月) | `/month/[month]` | `/month/2024-03` |
 | 全記事一覧 | `/articles` | - |
 | 全タグ一覧 | `/tags` | - |
 | 全画像一覧 | `/images` | - |
