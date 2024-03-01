@@ -1,18 +1,18 @@
 <script setup>
 const route = useRoute()
-const { title: routeTitle } = route.params
-const unescapedTitle = unescapeArticleTitle(routeTitle)
+const { link: routeLink } = route.params
+const unescapedLink = unescapeArticleTitle(routeLink)
 
 const { data: articles } = await useAsyncData('links', () => {
   return whereNotInTitle(queryContent()).sort({ created: -1 }).find()
 })
 
-// title のリンクを持つ記事一覧を取得する
+// 特定のリンクを持つ記事一覧を取得する
 const relatedArticles = []
 articles.value.forEach(article => {
-  article.links.forEach(linkTitle => {
-    const isFirst = !relatedArticles.some(a => a.title === unescapedTitle)
-    if (linkTitle === unescapedTitle && isFirst) {
+  article.links.forEach(link => {
+    const isFirst = !relatedArticles.some(a => a.title === unescapedLink)
+    if (link === unescapedLink && isFirst) {
       relatedArticles.push(article)
     }
   })
