@@ -36,11 +36,17 @@ export const whereNotIn = (query: any, key: string, valueList: string[]) => {
 
 // queryContent の where not を配列に対応させたもの (記事の title 専用)
 export const whereNotInTitle = (query: any) => {
-  const isArticle = (c: any) => c.type === headerNavTypes.ARTICLE
+  const headerNavTitles = appConfig.headerNavContents
+    .filter(c => c.type === headerNavTypes.ARTICLE)
+    .map(c => c.title || '')
+  const sidebarTitles = appConfig.sidebarContents
+    .filter(c => c.type === sidebarTypes.ARTICLE)
+    .map(c => c.title || '')
+  
   const valueList = [
     ...appConfig.excludeTitles,
-    ...appConfig.headerNavContents.filter(isArticle).map(c => c.title || ''),
-    ...appConfig.sidebarContents.filter(isArticle).map(c => c.title || ''),
+    ...headerNavTitles,
+    ...sidebarTitles,
   ]
   return whereNotIn(query, 'title', valueList)
 }
