@@ -60,7 +60,7 @@ const appConfig = {
     //{ type: sidebarTypes.ALL_ARTICLES_YEAR, label: '年別'},
     //{ type: sidebarTypes.ALL_ARTICLES_MONTH, label: '月別'},
     //{ type: sidebarTypes.ALL_ARTICLES_YEAR_MONTH, label: '年月別'},
-    //{ type: sidebarTypes.POPULAR_TAGS, label: 'タグ', max: 50},
+    //{ type: sidebarTypes.POPULAR_TAGS, label: 'タグ', max: 30},
   ],
 }
 

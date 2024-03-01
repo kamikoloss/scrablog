@@ -5,10 +5,11 @@ export const indexTypes = {
 
 export const headerNavTypes = {
   ARTICLE: 1,
-  EXTERNAL_LINK: 2,
-  ALL_ARTICLES: 3,
-  ALL_IMAGES: 4,
-  ALL_TAGS: 5,
+  INTERNAL_LINK: 2,
+  EXTERNAL_LINK: 3,
+  ALL_ARTICLES: 4,
+  ALL_IMAGES: 5,
+  ALL_TAGS: 6,
 }
 
 export const sidebarPositions = {
@@ -29,7 +30,7 @@ export const sidebarTypes = {
 
 export const defaultArticlesPerPage = 3
 export const defaultRecentArticlesMax = 5
-export const defaultPopularTagsMax = 50
+export const defaultPopularTagsMax = 30
 
 export const defaultAllArticlesLabel = '全記事一覧'
 export const defaultAllImagesLabel = '全画像一覧'
