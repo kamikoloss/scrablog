@@ -1,4 +1,5 @@
 import { appConfig } from '~/scrablog.config'
+import { headerNavTypes, sidebarTypes } from '~/scrablog.const'
 
 // Unix Time を日時の文字列に変換する
 export const getDateString = (unixTime: number, showTime: boolean): string => {
@@ -15,12 +16,12 @@ export const getDateString = (unixTime: number, showTime: boolean): string => {
   }
 }
 
-// 記事のタイトルをエスケープする
+// リンク (記事のタイトル) をエスケープする
 export const escapeArticleTitle = (title: string): string => {
   return title.replace(/ /g, '_').replace(/\//g, '%2F')
 }
 
-// 記事のタイトルをアンエスケープする
+// リンク (記事のタイトル) をアンエスケープする
 export const unescapeArticleTitle = (title: string): string => {
   return title.replace(/_/g, ' ').replace(/%2F/g, '/')
 }
@@ -33,9 +34,13 @@ export const whereNotIn = (query: any, key: string, valueList: string[]) => {
   return query
 }
 
-// queryContent の where not を配列に対応させたもの (title 専用)
+// queryContent の where not を配列に対応させたもの (記事の title 専用)
 export const whereNotInTitle = (query: any) => {
-  const systemValueList = ['profile']
-  const valueList = [...appConfig.excludeTitles, ...systemValueList]
+  const isArticle = (c: any) => c.type === headerNavTypes.ARTICLE
+  const valueList = [
+    ...appConfig.excludeTitles,
+    ...appConfig.headerNavContents.filter(isArticle).map(c => c.title || ''),
+    ...appConfig.sidebarContents.filter(isArticle).map(c => c.title || ''),
+  ]
   return whereNotIn(query, 'title', valueList)
 }
