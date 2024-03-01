@@ -30,3 +30,7 @@ export const sidebarTypes = {
 export const defaultArticlesPerPage = 3
 export const defaultRecentArticlesMax = 5
 export const defaultPopularTagsMax = 50
+
+export const defaultAllArticlesLabel = '全記事一覧'
+export const defaultAllImagesLabel = '全画像一覧'
+export const defaultAllTagsLabel = '全タグ一覧'
