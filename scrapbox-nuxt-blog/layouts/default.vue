@@ -10,6 +10,10 @@ const { data: allArticles } = await useAsyncData('default-all', () => {
   return queryContent().find()
 })
 
+const articlesYearMonth = getArticlesGroupByYearMonth(articles.value)
+const yearKeys = Object.keys(articlesYearMonth.year).sort((a, b) => b - a)
+const monthKeys = Object.keys(articlesYearMonth.month).sort((a, b) => b - a)
+
 const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
 </script>
 
@@ -64,18 +68,44 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
                     <Dot />
                     <span>{{ getDateString(article.created, false) }}</span>
                     <span>&nbsp;</span>
-                    <NuxtLink
-                      :to="`/${article.id}`"
-                      class="text-text-link"
-                    >
+                    <NuxtLink :to="`/${article.id}`" class="text-text-link">
                       {{ article.title }}
                     </NuxtLink>
                   </span>
                 </li>
               </ul>
             </div>
+            <!-- ALL_ARTICLES_YEAR: 年別 -->
+            <div class="my-16" v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_YEAR">
+              <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
+              <ul>
+                <li v-for="yearKey of yearKeys" class="my-2">
+                  <Dot />
+                  <NuxtLink :to="`/years/${yearKey}`" class="text-text-link">
+                    <span>{{ yearKey }}</span>
+                    <span>&nbsp;</span>
+                    <span>({{ articlesYearMonth.year[yearKey].length }})</span>
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
+            <!-- ALL_ARTICLES_MONTH: 月別 -->
+            <div class="my-16" v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_MONTH">
+              <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
+              <ul>
+                <li v-for="monthKey of monthKeys" class="my-2">
+                  <Dot />
+                  <NuxtLink :to="`/months/${monthKey}`" class="text-text-link">
+                    <span>{{ monthKey }}</span>
+                    <span>&nbsp;</span>
+                    <span>({{ articlesYearMonth.month[monthKey].length }})</span>
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+        <!-- サイドバーここまで -->
       </div>
     </main>
     <!-- フッター -->
