@@ -16,6 +16,30 @@ export const getDateString = (unixTime: number, showTime: boolean): string => {
   }
 }
 
+// 記事を年別と月別に振り分ける
+export const getArticlesGroupByYearMonth = (articles: any[]) => {
+  const articlesByYear: { [key: string]: any } = {}
+  const articlesByMonth: { [key: string]: any } = {}
+
+  articles.forEach(article => {
+    const dateString = getDateString(article.created, false) // '2023-01-23'
+
+    const year = dateString.slice(0, 4) // '2023'
+    if (!articlesByYear[year]) {
+      articlesByYear[year] = [] 
+    }
+    articlesByYear[year].push(article)
+
+    const month = dateString.slice(0, 7) // '2023-01'
+    if (!articlesByMonth[month]) {
+      articlesByMonth[month] = [] 
+    }
+    articlesByMonth[month].push(article)
+  })
+
+  return { year: articlesByYear, month: articlesByMonth }
+}
+
 // リンク (記事のタイトル) をエスケープする
 export const escapeArticleTitle = (title: string): string => {
   return title.replace(/ /g, '_').replace(/\//g, '%2F')
