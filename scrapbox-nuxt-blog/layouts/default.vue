@@ -103,6 +103,32 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
                 </li>
               </ul>
             </div>
+            <!-- ALL_ARTICLES_YEAR_MONTH: 年月別 -->
+            <div class="my-16" v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_YEAR_MONTH">
+              <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
+              <ul>
+                <li v-for="yearKey of yearKeys" class="my-2">
+                  <Dot />
+                  <NuxtLink :to="`/years/${yearKey}`" class="text-text-link">
+                    <span>{{ yearKey }}</span>
+                    <span>&nbsp;</span>
+                    <span>({{ articlesYearMonth.year[yearKey].length }})</span>
+                  </NuxtLink>
+                  <ul class="ml-4">
+                    <li v-for="monthKey of monthKeys" class="my-2">
+                      <span v-if="monthKey.includes(yearKey)">
+                        <Dot />
+                        <NuxtLink :to="`/months/${monthKey}`" class="text-text-link">
+                          <span>{{ monthKey }}</span>
+                          <span>&nbsp;</span>
+                          <span>({{ articlesYearMonth.month[monthKey].length }})</span>
+                        </NuxtLink>
+                      </span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <!-- サイドバーここまで -->
