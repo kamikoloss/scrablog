@@ -1,5 +1,9 @@
 <script setup>
-import { sidebarTypes, defaultRecentArticlesMax } from '~/scrablog.const';
+import {
+  headerNavTypes,
+  sidebarTypes,
+  defaultRecentArticlesMax,
+} from '~/scrablog.const';
 
 const appConfig = useAppConfig()
 
@@ -29,6 +33,35 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
           </h1>
           <!-- 説明文 -->
           <p v-if="appConfig.headerText" class="my-2">{{ appConfig.headerText }}</p>
+          <!-- ヘッダーナビゲーション -->
+          <div v-if="appConfig.showHeaderNav" class="flex gap-x-4 my-2">
+            <span v-for="headerNav of appConfig.headerNavContents">
+              <!-- ARTICLE: 特定の記事へのリンク -->
+              <span v-if="headerNav.type === headerNavTypes.ARTICLE">
+                <NuxtLink :to="`/${allArticles.find(a => a.title === headerNav.title)?.id}`" class="text-text-link">
+                  {{ headerNav.label }}
+                </NuxtLink>
+              </span>
+              <!-- INTERNAL_LINK: 内部リンク -->
+              <span v-if="headerNav.type === headerNavTypes.INTERNAL_LINK">
+                <NuxtLink :to="headerNav.to" class="text-text-link">
+                  {{ headerNav.label }}
+                </NuxtLink>
+              </span>
+              <!-- EXTERNAL_LINK: 外部リンク -->
+              <span v-if="headerNav.type === headerNavTypes.EXTERNAL_LINK">
+                <NuxtLink :to="headerNav.to" target="_blank" class="underline text-text-link">
+                  {{ headerNav.label }}
+                </NuxtLink>
+              </span>
+              <!-- ALL_ARTICLES: 全記事一覧 -->
+              <span v-if="headerNav.type === headerNavTypes.ALL_ARTICLES">
+                <NuxtLink to="/articles" class="text-text-link">
+                  {{ headerNav.label }}
+                </NuxtLink>
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </header>
@@ -47,27 +80,25 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
         </div>
         <!-- サイドバー -->
         <div
+          v-if="appConfig.showSidebar"
           class="
             w-full text-sm bg-bg-content mb-32 px-8
             lg:mt-32 lg:max-w-[320px]
           "
-          v-if="appConfig.showSidebar"
         >
           <div v-for="sidebar of appConfig.sidebarContents">
-            <!-- ARTICLE: フリー記事 -->
-            <div class="my-16" v-if="sidebar.type === sidebarTypes.ARTICLE">
+            <!-- ARTICLE: 特定の記事 -->
+            <div v-if="sidebar.type === sidebarTypes.ARTICLE" class="my-16">
               <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
               <Lines :lines="allArticles.find(a => a.title === sidebar.title)?.lines" />
             </div>
             <!-- RECENT_ARTICLES: 最近の記事 -->
-            <div class="my-16" v-if="sidebar.type === sidebarTypes.RECENT_ARTICLES">
+            <div v-if="sidebar.type === sidebarTypes.RECENT_ARTICLES" class="my-16">
               <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
               <ul>
                 <li v-for="(article, index) in articles" class="my-2">
                   <span v-if="index < (sidebar.max ?? defaultRecentArticlesMax)">
                     <Dot />
-                    <span>{{ getDateString(article.created, false) }}</span>
-                    <span>&nbsp;</span>
                     <NuxtLink :to="`/${article.id}`" class="text-text-link">
                       {{ article.title }}
                     </NuxtLink>
@@ -76,7 +107,7 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
               </ul>
             </div>
             <!-- ALL_ARTICLES_YEAR: 年別 -->
-            <div class="my-16" v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_YEAR">
+            <div v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_YEAR" class="my-16">
               <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
               <ul>
                 <li v-for="yearKey of yearKeys" class="my-2">
@@ -90,7 +121,7 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
               </ul>
             </div>
             <!-- ALL_ARTICLES_MONTH: 月別 -->
-            <div class="my-16" v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_MONTH">
+            <div v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_MONTH" class="my-16">
               <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
               <ul>
                 <li v-for="monthKey of monthKeys" class="my-2">
@@ -104,7 +135,7 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
               </ul>
             </div>
             <!-- ALL_ARTICLES_YEAR_MONTH: 年月別 -->
-            <div class="my-16" v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_YEAR_MONTH">
+            <div v-if="sidebar.type === sidebarTypes.ALL_ARTICLES_YEAR_MONTH" class="my-16">
               <h2 class="text-base font-bold my-2">{{ sidebar.label }}</h2>
               <ul>
                 <li v-for="yearKey of yearKeys" class="my-2">
