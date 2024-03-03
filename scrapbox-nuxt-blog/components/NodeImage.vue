@@ -1,18 +1,15 @@
 <script setup>
-const props = defineProps({
-  node: Object,
-  modal: Boolean,
-})
+const props = defineProps({ node: Object })
 
-//const enableModal = props.modal ?? false
-const enableModal = true
+const enableModal = ref(false)
 const isModalOpen = ref(false)
+onMounted(() => enableModal.value = window.innerWidth > 768)
 
 const imageClass = (node) => {
   return {
     // strongImage の場合は制限をつけない
     'max-h-80': node.type === 'image',
-    'cursor-pointer	': enableModal,
+    'cursor-pointer	': enableModal.value,
   }
 }
 
@@ -24,7 +21,7 @@ const modalClass = () => {
 }
 
 const onClickModal = () => {
-  if (!enableModal) return
+  if (!enableModal.value) return
   isModalOpen.value = !isModalOpen.value
 }
 </script>
