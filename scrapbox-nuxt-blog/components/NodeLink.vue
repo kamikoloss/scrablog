@@ -24,7 +24,7 @@ const isYouTube = href.includes('youtube.com') || href.includes('youtu.be')
     <!-- 外部 Scrapbox -->
     <NuxtLink
       v-if="node.pathType === 'root'"
-      :to="`https://scrapbox.io${node.href}/`"
+      :to="`https://scrapbox.io${node.href}`"
       target="_blank"
       class="underline text-text-link"
     >
