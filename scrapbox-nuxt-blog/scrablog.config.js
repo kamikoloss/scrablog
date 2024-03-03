@@ -21,6 +21,7 @@ const appConfig = {
   showGeneratedBy: true,
 
   // 記事一覧から除外する記事のタイトルのリスト
+  // headerNavContents と sidebarContents の ARTICLE は自動的にここに含まれる
   excludeTitles: ['kamikoloss'],
   // 記事一覧をどのような形式で表示するか
   indexType: indexTypes.BLOG_FULL,
