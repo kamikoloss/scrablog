@@ -3,7 +3,11 @@ const props = defineProps({ node: Object })
 
 const enableModal = ref(false)
 const isModalOpen = ref(false)
-onMounted(() => enableModal.value = window.innerWidth > 768)
+onMounted(() => {
+  const mdScreen = window.innerWidth > 768
+  const isNotStrong = props.node.type !== 'strongImage'
+  enableModal.value = mdScreen && isNotStrong
+})
 
 const imageClass = (node) => {
   return {
