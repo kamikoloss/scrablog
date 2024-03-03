@@ -18,26 +18,26 @@ export const getDateString = (unixTime: number, showTime: boolean): string => {
 
 // 記事を年別と月別に振り分ける
 export const getArticlesGroupByYearMonth = (articles: any[]) => {
-  const articlesByYear: { [key: string]: any } = {}
-  const articlesByMonth: { [key: string]: any } = {}
+  const articlesYear: { [key: string]: any } = {}
+  const articlesMonth: { [key: string]: any } = {}
 
   articles.forEach(article => {
     const dateString = getDateString(article.created, false) // '2023-01-23'
 
     const year = dateString.slice(0, 4) // '2023'
-    if (!articlesByYear[year]) {
-      articlesByYear[year] = [] 
+    if (!articlesYear[year]) {
+      articlesYear[year] = [] 
     }
-    articlesByYear[year].push(article)
+    articlesYear[year].push(article)
 
     const month = dateString.slice(0, 7) // '2023-01'
-    if (!articlesByMonth[month]) {
-      articlesByMonth[month] = [] 
+    if (!articlesMonth[month]) {
+      articlesMonth[month] = [] 
     }
-    articlesByMonth[month].push(article)
+    articlesMonth[month].push(article)
   })
 
-  return { year: articlesByYear, month: articlesByMonth }
+  return { year: articlesYear, month: articlesMonth }
 }
 
 // リンク (記事のタイトル) をエスケープする
