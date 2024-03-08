@@ -60,6 +60,12 @@ const maxWidthClass = appConfig.showSidebar ? 'max-w-7xl' : 'max-w-3xl'
                   {{ headerNav.label }}
                 </NuxtLink>
               </span>
+              <!-- ALL_IMAGES: 全画像一覧 -->
+              <span v-if="headerNav.type === headerNavTypes.ALL_IMAGES">
+                <NuxtLink to="/images" class="text-text-link">
+                  {{ headerNav.label }}
+                </NuxtLink>
+              </span>
             </span>
           </div>
         </div>

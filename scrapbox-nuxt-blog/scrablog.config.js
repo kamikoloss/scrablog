@@ -47,7 +47,7 @@ const appConfig = {
     { type: headerNavTypes.INTERNAL_LINK, label: '2023年の記事', to: '/years/2023' },
     { type: headerNavTypes.EXTERNAL_LINK, label: 'GitHub', to: 'https://github.com/kamikoloss' },
     { type: headerNavTypes.ALL_ARTICLES, label: '全記事一覧' },
-    //{ type: headerNavTypes.ALL_IMAGES, label: '全画像一覧' },
+    { type: headerNavTypes.ALL_IMAGES, label: '全画像一覧' },
     //{ type: headerNavTypes.ALL_TAGS, label: '全タグ一覧' },
   ],
 
