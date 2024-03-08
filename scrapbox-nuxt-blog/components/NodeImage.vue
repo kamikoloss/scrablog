@@ -51,6 +51,5 @@ const onClickModal = () => {
         />
       </div>
     </div>
-
   </div>
 </template>
